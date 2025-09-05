@@ -11,7 +11,9 @@ admins = data.admins
 st.title("Our Notebook (Partially)")
 st.header("Here you will find the algorithm implementations for things we believe you need.")
 
-t = st.tabs(["Dinic", "SCC", "Union Find", "MCMF", "Hungarian", "Seg Tree", "Lazy Seg Tree", "Fenwick"])
+t = st.tabs(["Dinic", "SCC", "Union Find", "MCMF", "Hungarian", "Seg Tree", "Lazy Seg Tree", "Fenwick",
+             "Binary Lifting"
+             ])
 
 with t[0]:
     st.markdown("""
@@ -19,7 +21,7 @@ with t[0]:
     
     Time Complexity: $O(\\mathrm{min}(E^{\\frac{1}{2}}, V^{\\frac{2}{3}})E)$   if $U = 1$.
     
-    $O(√V E)$ for bipartite matching.""")
+    $O(\\sqrt V E)$ for bipartite matching.""")
 
 
     code = """
@@ -406,6 +408,42 @@ with t[7]:
                     k -= s[i += pw];
             return i; 
         } 
+    };
+    """
+    st.code(code, language='cpp', line_numbers=True)
+
+with t[8]:
+    st.markdown('''
+    Description: Calculate jumps up a tree, to support fast upward jumps and LCAs.
+    
+    Assumes the root node points to itself.
+    
+    Time: construction $O(N)$, queries $O(\\log N)$''')
+
+    code = """
+
+    struct lift {
+          vi d, p, j;
+          lift(vector<vi>& adj): d(sz(adj)), p(d), j(d) {
+                dfs(0, adj); }
+          void dfs(int u, vector<vi>& adj) {
+                int jmp = (d[u] + d[j[j[u]]] == 2 * d[j[u]]) ? j[j[u]]
+                                                         : u;
+                for (int v : adj[u]) if (v != p[u])
+                    d[v] = d[p[v] = u] + 1, j[v] = jmp, dfs(v, adj); }
+          int lca(int u, int v) {
+                if (d[u] < d[v]) swap(u, v);
+                while (d[u] > d[v]) u = d[j[u]] >= d[v] ? j[u] : p[u];
+                if (u == v) return u;
+                while (p[u] != p[v]) if (j[u] != j[v]) u = j[u], v = j[v];
+                else u = p[u], v = p[v];
+                return p[u]; }
+          int kth(int u, int k) {
+                if (k > d[u]) return -1;
+                k = d[u] - k;
+                while (d[u] > k) u = d[j[u]] >= k ? j[u] : p[u];
+                return u; 
+          } 
     };
     """
     st.code(code, language='cpp', line_numbers=True)
