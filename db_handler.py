@@ -19,10 +19,21 @@ def save_db(di):
         write_timeout=timeout,
     )
     c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS data (id INTEGER PRIMARY KEY AUTO_INCREMENT, content LONGTEXT)')
+    c.execute(
+        'CREATE TABLE IF NOT EXISTS data ('
+        'id INT PRIMARY KEY, '
+        'content LONGTEXT)'
+    )
     c.execute('DELETE FROM data')
     json_data = json.dumps(di)
-    c.execute('INSERT INTO data (content) VALUES (%s)', (json_data,))
+    c.execute(
+        """
+        INSERT INTO data (id, content)
+        VALUES (%s, %s)
+        ON DUPLICATE KEY UPDATE content = VALUES(content)
+        """,
+        (1, content_json),
+    )
     conn.commit()
     conn.close()
 
@@ -41,8 +52,12 @@ def load_db():
         write_timeout=timeout,
     )
     c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS data (id INTEGER PRIMARY KEY, content TEXT)')
-    c.execute('SELECT content FROM data LIMIT 1')
+    c.execute(
+        'CREATE TABLE IF NOT EXISTS data ('
+        'id INT PRIMARY KEY, '
+        'content LONGTEXT)'
+    )
+    c.execute('SELECT content FROM data WHERE id = 1')
     row = c.fetchone()
     conn.close()
     if row:
