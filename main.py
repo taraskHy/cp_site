@@ -174,6 +174,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             # bo = BytesIO()
             # pr.save(bo)
             # st.download_button(label='Week 1 Presentation', data=bo.getvalue(), file_name='Competitive-Programming-week-1.pptx', key='cpw11819')
+'''
             st.write("""
                     Week One – Introduction to Competitive Programming Concepts
                     This week covers foundational problem-solving strategies using C++ STL,
@@ -235,7 +236,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
                     and bracket sequence analysis.
             """)
             new_off = week(week5u, week5l, week5s, tasks, new_off)
-
+'''
         db_handler.save_db(di)
 
     #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
