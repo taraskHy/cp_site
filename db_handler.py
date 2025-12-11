@@ -24,7 +24,6 @@ def save_db(di):
         'id INT PRIMARY KEY, '
         'content LONGTEXT)'
     )
-    c.execute('DELETE FROM data')
     json_data = json.dumps(di)
     c.execute(
         """
