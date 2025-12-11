@@ -11,10 +11,10 @@ def save_db(di):
         connect_timeout=timeout,
         cursorclass=pymysql.cursors.DictCursor,
         db="defaultdb",
-        host="mysql-61299e7-tomerh1307-848d.b.aivencloud.com",
-        password="AVNS_IaSLgu0RmDRZK6CsuO4",
+        host="mysql-cpuoh2026-cpuoh2026.h.aivencloud.com",
+        password="AVNS_6_akBbjIQV3juRmmGY6",
         read_timeout=timeout,
-        port=28557,
+        port=16235,
         user="avnadmin",
         write_timeout=timeout,
     )
