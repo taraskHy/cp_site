@@ -1,3 +1,4 @@
+'''
 # week 1
 week1s = [0, 0, 0, 1, 1, 0, 2, 2, 2]
 week1u = [
@@ -77,6 +78,7 @@ week5l = [
 # Final metadata
 stars = week1s + week2s + week3s + week4s + week5s
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
+'''
 total_cf = ['2029C']
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh']
