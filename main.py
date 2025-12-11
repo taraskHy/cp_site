@@ -163,80 +163,78 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
 
-        with st.container():
-            if not st.session_state.get('authentication_status'):
-                st.rerun()
-            tasks, cses_handle = return_parsing()
-            st.write("---")
-            st.header("Week One - Intro to CP, STL, Greedy Algorithms and Dynamic Programming")
-            # st.write("Here is the presentation for this week:")
-            # pr = Presentation('presentations/week1.pptx')
-            # bo = BytesIO()
-            # pr.save(bo)
-            # st.download_button(label='Week 1 Presentation', data=bo.getvalue(), file_name='Competitive-Programming-week-1.pptx', key='cpw11819')
-'''
-            st.write("""
-                    Week One – Introduction to Competitive Programming Concepts
-                    This week covers foundational problem-solving strategies using C++ STL,
-                    greedy algorithms, and basic dynamic programming. You'll practice sorting,
-                    prefix sums, greedy interval selection, and subset-sum variations using
-                    classic problems from the CSES Problem Set.
-                   """)
-            new_off = week(week1u, week1l, week1s, tasks, 0)
+        # with st.container():
+        #     if not st.session_state.get('authentication_status'):
+        #         st.rerun()
+        #     tasks, cses_handle = return_parsing()
+        #     st.write("---")
+        #     st.header("Week One - Intro to CP, STL, Greedy Algorithms and Dynamic Programming")
+        #     # st.write("Here is the presentation for this week:")
+        #     # pr = Presentation('presentations/week1.pptx')
+        #     # bo = BytesIO()
+        #     # pr.save(bo)
+        #     # st.download_button(label='Week 1 Presentation', data=bo.getvalue(), file_name='Competitive-Programming-week-1.pptx', key='cpw11819')
+        #     st.write("""
+        #             Week One – Introduction to Competitive Programming Concepts
+        #             This week covers foundational problem-solving strategies using C++ STL,
+        #             greedy algorithms, and basic dynamic programming. You'll practice sorting,
+        #             prefix sums, greedy interval selection, and subset-sum variations using
+        #             classic problems from the CSES Problem Set.
+        #            """)
+        #     new_off = week(week1u, week1l, week1s, tasks, 0)
 
-        with st.container():
-            st.write("---")
-            st.header("Week Two - Graph Algorithms")
+        # with st.container():
+        #     st.write("---")
+        #     st.header("Week Two - Graph Algorithms")
 
-            st.write("""
-                    This week dives into fundamental graph techniques used in contests and real-world
-                    applications. Topics include breadth-first search (BFS), depth-first search (DFS),
-                    topological sorting for DAGs, Dijkstra’s algorithm for shortest paths, and
-                    cycle detection. Problems are selected to build strong intuition for graph traversal.
-                   """)
-            new_off = week(week2u, week2l, week2s, tasks, new_off)
+        #     st.write("""
+        #             This week dives into fundamental graph techniques used in contests and real-world
+        #             applications. Topics include breadth-first search (BFS), depth-first search (DFS),
+        #             topological sorting for DAGs, Dijkstra’s algorithm for shortest paths, and
+        #             cycle detection. Problems are selected to build strong intuition for graph traversal.
+        #            """)
+        #     new_off = week(week2u, week2l, week2s, tasks, new_off)
 
-        with st.container():
-            st.write("---")
-            st.header("Week Three - Max Flow, Matching, Union Find and SCC")
+        # with st.container():
+        #     st.write("---")
+        #     st.header("Week Three - Max Flow, Matching, Union Find and SCC")
 
-            st.write("""
-                    This week focuses on advanced graph techniques used in network flow, connectivity,
-                    and component analysis. You'll implement algorithms like Edmonds-Karp for maximum flow,
-                    use Union-Find (Disjoint Set Union) for efficient connectivity queries, and apply
-                    Kosaraju’s or Tarjan’s algorithm to find strongly connected components (SCCs).
-                    These topics are essential for tackling harder graph problems in competitions.
-            """)
-            new_off = week(week3u, week3l, week3s, tasks, new_off)
+        #     st.write("""
+        #             This week focuses on advanced graph techniques used in network flow, connectivity,
+        #             and component analysis. You'll implement algorithms like Edmonds-Karp for maximum flow,
+        #             use Union-Find (Disjoint Set Union) for efficient connectivity queries, and apply
+        #             Kosaraju’s or Tarjan’s algorithm to find strongly connected components (SCCs).
+        #             These topics are essential for tackling harder graph problems in competitions.
+        #     """)
+        #     new_off = week(week3u, week3l, week3s, tasks, new_off)
 
 
-        with st.container():
-            st.write("---")
-            st.header("Week Four – Segment Trees, Fenwick Trees, and Range Queries")
+        # with st.container():
+        #     st.write("---")
+        #     st.header("Week Four – Segment Trees, Fenwick Trees, and Range Queries")
 
-            st.write(""" 
-                    This week explores advanced data structures for efficient range queries and updates.
-                    You will implement segment trees and Fenwick trees (Binary Indexed Trees), handle
-                    point and range updates, and solve problems involving prefix sums, order statistics,
-                    and dynamic data manipulation. These skills are key for optimizing solutions
-                    to meet strict time constraints in competitive programming.
-            """)
-            new_off = week(week4u, week4l, week4s, tasks, new_off)
+        #     st.write(""" 
+        #             This week explores advanced data structures for efficient range queries and updates.
+        #             You will implement segment trees and Fenwick trees (Binary Indexed Trees), handle
+        #             point and range updates, and solve problems involving prefix sums, order statistics,
+        #             and dynamic data manipulation. These skills are key for optimizing solutions
+        #             to meet strict time constraints in competitive programming.
+        #     """)
+        #     new_off = week(week4u, week4l, week4s, tasks, new_off)
 
-        with st.container():
-            st.write("---")
-            st.header("Week Five – Binary Lifting, Euler Tour and Math")
+        # with st.container():
+        #     st.write("---")
+        #     st.header("Week Five – Binary Lifting, Euler Tour and Math")
 
-            st.write(""" 
-                    This week explores fundamental tree algorithms and number theory techniques.
-                    Topics include computing tree diameters, subtree queries, and handling ancestor
-                    queries efficiently with Lowest Common Ancestor (LCA). On the math side, you’ll
-                    practice modular exponentiation and its extensions for solving power-related problems.
-                    Locked challenges introduce more advanced applications such as dynamic parent queries
-                    and bracket sequence analysis.
-            """)
-            new_off = week(week5u, week5l, week5s, tasks, new_off)
-'''
+        #     st.write(""" 
+        #             This week explores fundamental tree algorithms and number theory techniques.
+        #             Topics include computing tree diameters, subtree queries, and handling ancestor
+        #             queries efficiently with Lowest Common Ancestor (LCA). On the math side, you’ll
+        #             practice modular exponentiation and its extensions for solving power-related problems.
+        #             Locked challenges introduce more advanced applications such as dynamic parent queries
+        #             and bracket sequence analysis.
+        #     """)
+        #     new_off = week(week5u, week5l, week5s, tasks, new_off)
         db_handler.save_db(di)
 
     #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
