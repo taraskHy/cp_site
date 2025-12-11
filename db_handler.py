@@ -19,19 +19,19 @@ def save_db(di):
         write_timeout=timeout,
     )
     c = conn.cursor()
+    json_data = json.dumps(di)
     c.execute(
         'CREATE TABLE IF NOT EXISTS data ('
         'id INT PRIMARY KEY, '
         'content LONGTEXT)'
     )
-    json_data = json.dumps(di)
     c.execute(
         """
         INSERT INTO data (id, content)
         VALUES (%s, %s)
         ON DUPLICATE KEY UPDATE content = VALUES(content)
         """,
-        (1, content_json),
+        (1, json_data),
     )
     conn.commit()
     conn.close()
