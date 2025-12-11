@@ -61,6 +61,7 @@ elif st.session_state['reg'] == 3:
         di['usernames'][st.session_state.get('username')]['cses_username'] = cses_username
         cses_handle = st.text_input('CSES Handle (Go to your profile, it\'s the numbers in the URL!)',
                                     key='cses_handle')
+        st.form_submit_button()
         di['usernames'][st.session_state.get('username')]['cses_handle'] = cses_handle
 
 
