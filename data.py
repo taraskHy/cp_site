@@ -79,6 +79,8 @@ week5l = [
 stars = week1s + week2s + week3s + week4s + week5s
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
 '''
+stars = 0
+total_prob = 0
 total_cf = ['2029C']
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh']
