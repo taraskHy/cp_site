@@ -47,4 +47,4 @@ def load_db():
     conn.close()
     if row:
         return json.loads(row['content'])
-    return {}   # Return empty dict if DB is empty
+    return {'usernames':{}}   # Return empty dict if DB is empty
