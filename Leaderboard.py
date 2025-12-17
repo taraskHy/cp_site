@@ -99,4 +99,5 @@ st.write("""
         secondly their time of solving the last problem. 
         """)
 
-db_handler.save_db(di)
+if tot:
+    db_handler.save_db(di)
