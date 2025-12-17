@@ -5,6 +5,7 @@ import json
 import pymysql
 import tempfile
 import ssl
+timeout = 10
 
 def _connect():
     try:
@@ -30,7 +31,6 @@ def _connect():
 
         return None
         
-timeout = 10
 def save_db(di):
     conn = _connect()
     if conn is None:
