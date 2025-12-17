@@ -94,7 +94,6 @@ def load_db():
     conn = _connect()
     if conn is None:
         return {"usernames": {}}
-
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS data (id INT PRIMARY KEY, content LONGTEXT)")
     c.execute("SELECT content FROM data WHERE id = 1")
