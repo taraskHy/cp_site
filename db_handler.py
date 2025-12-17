@@ -4,6 +4,8 @@ This module should handle db.
 import json
 import pymysql
 import tempfile
+import ssl
+
 AIVEN_CA_CERT_PEM = """-----BEGIN CERTIFICATE-----
 MIIEUDCCArigAwIBAgIUb7iKSpR7U1Bdqvg7muAXEB8CTzgwDQYJKoZIhvcNAQEM
 BQAwQDE+MDwGA1UEAww1NzgxZGVmMzYtZjEyMS00MzQyLWI0ZmQtMWQ4N2RiOWEw
@@ -42,9 +44,9 @@ def _aiven_ssl():
         f.close()
         _CA_PATH = f.name
 
-    ctx = ssl_mod.create_default_context(cafile=_CA_PATH)
+    ctx = ssl.create_default_context(cafile=_CA_PATH)
     ctx.check_hostname = True
-    ctx.verify_mode = ssl_mod.CERT_REQUIRED
+    ctx.verify_mode = ssl.CERT_REQUIRED
     return ctx
 
 def _connect():
