@@ -86,3 +86,33 @@ def _connect():
         except Exception:
             pass
         return None
+
+def save_db(di):
+    conn = _connect()
+    if conn is None:
+        return
+    c = conn.cursor()
+    json_data = json.dumps(di)
+    c.execute("CREATE TABLE IF NOT EXISTS data (id INT PRIMARY KEY, content LONGTEXT)")
+    c.execute(
+        "INSERT INTO data (id, content) VALUES (%s, %s) "
+        "ON DUPLICATE KEY UPDATE content = VALUES(content)",
+        (1, json_data),
+    )
+    conn.commit()
+    conn.close()
+
+def load_db():
+    conn = _connect()
+    if conn is None:
+        return {"usernames": {}}
+
+    c = conn.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS data (id INT PRIMARY KEY, content LONGTEXT)")
+    c.execute("SELECT content FROM data WHERE id = 1")
+    row = c.fetchone()
+    conn.close()
+    if row and row.get("content"):
+        return json.loads(row["content"])
+    return {"usernames": {}}
+
