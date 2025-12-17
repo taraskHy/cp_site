@@ -70,7 +70,7 @@ def _connect():
             host=host,
             port=port,
             user="avnadmin",
-            password="YOUR_PASSWORD_HERE",
+            password="AVNS_6_akBbjIQV3juRmmGY6",
             db="defaultdb",
             charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor,
