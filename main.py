@@ -160,9 +160,9 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         authenticator.logout('Logout', 'sidebar')
 
 
-    def add_presentation_grid(presentations):
-    
+def add_presentation_grid(presentations):
     # Displays a grid of presentations with download buttons.
+    
     num_columns = 3
     num_rows = (len(presentations) + num_columns - 1) // num_columns
 
@@ -197,7 +197,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
                         except Exception as e:
                              st.error(f"Error loading file.")
 
-       def Homepage():
+    def Homepage():
         with st.container():
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
