@@ -284,6 +284,9 @@ def Homepage():
         
     db_handler.save_db(di)
 
-    #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
-pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py'])
+home_page = st.Page(Homepage, title="Home", icon=":material/home:")
+leaderboard_page = st.Page("Leaderboard.py", title="Leaderboard", icon=":material/leaderboard:")
+profile_page = st.Page("Profile.py", title="Profile", icon=":material/person:")
+
+pg = st.navigation([home_page, leaderboard_page, profile_page])
 pg.run()
