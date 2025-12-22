@@ -12,6 +12,8 @@ from streamlit_star_rating import st_star_rating
 from data import *
 from codeforces_parser import fetch_user
 import db_handler
+import os
+import informations
 
 
 
@@ -196,21 +198,21 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
                         except Exception as e:
                              st.error(f"Error loading file.")
 
-    def Homepage():
+       def Homepage():
         with st.container():
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
-           st.write("---")
+            st.write("---")
         
-    st.header("Learning Materials")
-    try:
-        all_presentations = informations.all_presentations
-        add_presentation_grid(all_presentations)
-    except AttributeError:
-        st.error("Could not load presentations. Please check 'informations.py'.")
-    except Exception as e:
-        st.error(f"An error occurred loading presentations: {e}")
+        st.header("Learning Materials")
+        try:
+            all_presentations = informations.all_presentations
+            add_presentation_grid(all_presentations)
+        except AttributeError:
+            st.error("Could not load presentations. Please check 'informations.py'.")
+        except Exception as e:
+            st.error(f"An error occurred loading presentations: {e}")
 
         
         # with st.container():
@@ -230,7 +232,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         #             greedy algorithms, and basic dynamic programming. You'll practice sorting,
         #             prefix sums, greedy interval selection, and subset-sum variations using
         #             classic problems from the CSES Problem Set.
-        #            """)
+        #             """)
         #     new_off = week(week1u, week1l, week1s, tasks, 0)
 
         # with st.container():
@@ -242,7 +244,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         #             applications. Topics include breadth-first search (BFS), depth-first search (DFS),
         #             topological sorting for DAGs, Dijkstra’s algorithm for shortest paths, and
         #             cycle detection. Problems are selected to build strong intuition for graph traversal.
-        #            """)
+        #             """)
         #     new_off = week(week2u, week2l, week2s, tasks, new_off)
 
         # with st.container():
@@ -291,4 +293,3 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
     #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
     pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py'])
     pg.run()
-
