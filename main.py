@@ -158,30 +158,61 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         authenticator.logout('Logout', 'sidebar')
 
 
+    def add_presentation_grid(presentations):
+    """
+    Displays a grid of presentations with download buttons.
+    """
+    num_columns = 3
+    num_rows = (len(presentations) + num_columns - 1) // num_columns
+
+    for row in range(num_rows):
+        cols = st.columns(num_columns)
+        for col_idx in range(num_columns):
+            presentation_idx = row * num_columns + col_idx
+            if presentation_idx < len(presentations):
+                presentation = presentations[presentation_idx]
+                with cols[col_idx]:
+                    with st.container(border=True):
+                        st.markdown(f"#### {presentation['title']}")
+                        st.image(presentation["image"], use_container_width=True)
+                        
+                        pdf_path = presentation["pdf_path"]
+                        
+                        try:
+                            with open(pdf_path, "rb") as f:
+                                pdf_data = f.read()
+                            
+                            file_name = os.path.basename(pdf_path)
+
+                            st.download_button(
+                                label="Download PDF",
+                                data=pdf_data,
+                                file_name=file_name,
+                                mime="application/pdf",
+                                key=f"btn_{presentation_idx}"
+                            )
+                        except FileNotFoundError:
+                             st.error("PDF file not found.")
+                        except Exception as e:
+                             st.error(f"Error loading file.")
+
     def Homepage():
         with st.container():
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
-           
-            st.write("---")
-            st.header("Presentations")
-            all_presentations = [
-                ("presentations/1-CPP+STL/cpp+stl.pptx.pdf", "C++ STL"),
-                ("presentations/2-GREEDY/greedy.pptx.pdf", "Greedy"),
-                ("presentations/3-DP/dp.pptx.pdf", "Dynamic Programming"),
-                ("presentations/4-GRAPH/graphs.pdf", "Graph Algorithms"),
-                ("presentations/4-GRAPH/scc+uf.pdf", "SCC & Union Find"),
-                ("presentations/5-FLOW+MATCHING/flow+matching.pdf", "Flow & Matching"),
-                ("presentations/5-FLOW+MATCHING/min_cost_max_flow.pdf", "Min Cost Max Flow"),
-                ("presentations/6-RANGE_QUERIES/ragne_queries.pdf", "Range Queries"),
-                ("presentations/6-RANGE_QUERIES/range_updates_and_queries.pptx", "Range Updates"),
-                ("presentations/7-TREES/binary_lifting.pdf", "Binary Lifting"),
-                ("presentations/7-TREES/trees.pdf", "Trees"),
-                ("presentations/8-MATH/math.pdf", "Math")
-            ]
-            add_presentation_grid(all_presentations)
+           st.write("---")
+        
+    st.header("Learning Materials")
+    try:
+        all_presentations = informations.all_presentations
+        add_presentation_grid(all_presentations)
+    except AttributeError:
+        st.error("Could not load presentations. Please check 'informations.py'.")
+    except Exception as e:
+        st.error(f"An error occurred loading presentations: {e}")
 
+        
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
         #         st.rerun()
