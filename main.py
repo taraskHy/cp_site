@@ -162,6 +162,23 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
+            st.write("---")
+            st.header("Presentations")
+            all_presentations = [
+                ("presentations/1 - CPP+STL/cpp+stl.pptx.pdf", "C++ STL"),
+                ("presentations/2 - GREEDY/greedy.pptx.pdf", "Greedy"),
+                ("presentations/3 - DP/dp.pptx.pdf", "Dynamic Programming"),
+                ("presentations/4 - GRAPH/graphs.pdf", "Graph Algorithms"),
+                ("presentations/4 - GRAPH/scc+uf.pdf", "SCC & Union Find"),
+                ("presentations/5 - FLOW + MATCHING/flow+matching.pdf", "Flow & Matching"),
+                ("presentations/5 - FLOW + MATCHING/min_cost_max_flow.pdf", "Min Cost Max Flow"),
+                ("presentations/6 - RANGE QUERIES/ragne_queries.pdf", "Range Queries"),
+                ("presentations/6 - RANGE QUERIES/range_updates_and_queries.pptx", "Range Updates"),
+                ("presentations/7 - TREES/binary_lifting.pdf", "Binary Lifting"),
+                ("presentations/7 - TREES/trees.pdf", "Trees"),
+                ("presentations/8  - MATH/math.pdf", "Math")
+            ]
+            add_presentation_grid(all_presentations)
 
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
@@ -235,6 +252,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         #             and bracket sequence analysis.
         #     """)
         #     new_off = week(week5u, week5l, week5s, tasks, new_off)
+        
         db_handler.save_db(di)
 
     #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
