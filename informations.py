@@ -9,6 +9,7 @@ if data:
         c = user.count(0)
         if c > 0:
             print(user)
+
 all_presentations = [
     {
         "title": "Week 1: C++ STL",
