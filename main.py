@@ -162,6 +162,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
+           
             st.write("---")
             st.header("Presentations")
             all_presentations = [
