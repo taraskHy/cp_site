@@ -196,21 +196,21 @@ def add_presentation_grid(presentations):
                         except Exception as e:
                              st.error(f"Error loading file.")
 
-    def Homepage():
-        with st.container():
-            st.title("Competitive Programming At University of Haifa")
-            st.write("Welcome to the Competitive Programming At University of Haifa website!")
-            st.write("This website is designed to help students learn and practice competitive programming.")
-            st.write("---")
+def Homepage():
+    with st.container():
+        st.title("Competitive Programming At University of Haifa")
+        st.write("Welcome to the Competitive Programming At University of Haifa website!")
+        st.write("This website is designed to help students learn and practice competitive programming.")
+        st.write("---")
         
-        st.header("Learning Materials")
-        try:
-            all_presentations = informations.all_presentations
-            add_presentation_grid(all_presentations)
-        except AttributeError:
-            st.error("Could not load presentations. Please check 'informations.py'.")
-        except Exception as e:
-            st.error(f"An error occurred loading presentations: {e}")
+    st.header("Learning Materials")
+    try:
+        all_presentations = informations.all_presentations
+        add_presentation_grid(all_presentations)
+    except AttributeError:
+        st.error("Could not load presentations. Please check 'informations.py'.")
+    except Exception as e:
+        st.error(f"An error occurred loading presentations: {e}")
 
         
         # with st.container():
@@ -286,8 +286,8 @@ def add_presentation_grid(presentations):
         #     """)
         #     new_off = week(week5u, week5l, week5s, tasks, new_off)
         
-        db_handler.save_db(di)
+    db_handler.save_db(di)
 
     #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
-    pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py'])
-    pg.run()
+pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py'])
+pg.run()
