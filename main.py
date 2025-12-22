@@ -1,4 +1,3 @@
-import Material
 import streamlit as st
 import pickle
 from pathlib import Path
@@ -13,6 +12,8 @@ from data import *
 from codeforces_parser import fetch_user
 import db_handler
 import os
+import Material
+
 
 
 st.set_page_config(page_title="Competitive Programming At University of Haifa", page_icon=":shark:", layout="wide")
