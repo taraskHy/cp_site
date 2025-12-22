@@ -161,9 +161,8 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
 
 
     def add_presentation_grid(presentations):
-    """
-    Displays a grid of presentations with download buttons.
-    """
+    
+    # Displays a grid of presentations with download buttons.
     num_columns = 3
     num_rows = (len(presentations) + num_columns - 1) // num_columns
 
