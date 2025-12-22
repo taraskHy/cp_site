@@ -161,7 +161,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
 
 
 def add_presentation_grid(presentations):
-    # Displays a grid of presentations with download buttons.
+    # Displays a grid of presentations with download buttons (No Images).
     
     num_columns = 3
     num_rows = (len(presentations) + num_columns - 1) // num_columns
@@ -175,8 +175,6 @@ def add_presentation_grid(presentations):
                 with cols[col_idx]:
                     with st.container(border=True):
                         st.markdown(f"#### {presentation['title']}")
-                        st.image(presentation["image"], use_container_width=True)
-                        
                         pdf_path = presentation["pdf_path"]
                         
                         try:
