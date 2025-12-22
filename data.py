@@ -84,4 +84,4 @@ total_prob = []
 #total_cf = ['2029C']
 total_cf = [] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
-black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'Tomer ( ͡° ͜ʖ ͡°)']
+black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']
