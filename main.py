@@ -11,10 +11,11 @@ from streamlit_star_rating import st_star_rating
 from data import *
 from codeforces_parser import fetch_user
 import db_handler
-import os
-import informations
+
+
 
 st.set_page_config(page_title="Competitive Programming At University of Haifa", page_icon=":shark:", layout="wide")
+
 
 di = db_handler.load_db()
 
@@ -156,59 +157,29 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         authenticator.logout('Logout', 'sidebar')
 
 
-def add_presentation_grid(presentations):
-    # Displays a grid of presentations with download buttons.
-    
-    num_columns = 3
-    num_rows = (len(presentations) + num_columns - 1) // num_columns
+    def Homepage():
+        with st.container():
+            st.title("Competitive Programming At University of Haifa")
+            st.write("Welcome to the Competitive Programming At University of Haifa website!")
+            st.write("This website is designed to help students learn and practice competitive programming.")
+            st.write("---")
+            st.header("Presentations")
+            all_presentations = [
+                ("presentations/1 - CPP+STL/cpp+stl.pptx.pdf", "C++ STL"),
+                ("presentations/2 - GREEDY/greedy.pptx.pdf", "Greedy"),
+                ("presentations/3 - DP/dp.pptx.pdf", "Dynamic Programming"),
+                ("presentations/4 - GRAPH/graphs.pdf", "Graph Algorithms"),
+                ("presentations/4 - GRAPH/scc+uf.pdf", "SCC & Union Find"),
+                ("presentations/5 - FLOW + MATCHING/flow+matching.pdf", "Flow & Matching"),
+                ("presentations/5 - FLOW + MATCHING/min_cost_max_flow.pdf", "Min Cost Max Flow"),
+                ("presentations/6 - RANGE QUERIES/ragne_queries.pdf", "Range Queries"),
+                ("presentations/6 - RANGE QUERIES/range_updates_and_queries.pptx", "Range Updates"),
+                ("presentations/7 - TREES/binary_lifting.pdf", "Binary Lifting"),
+                ("presentations/7 - TREES/trees.pdf", "Trees"),
+                ("presentations/8  - MATH/math.pdf", "Math")
+            ]
+            add_presentation_grid(all_presentations)
 
-    for row in range(num_rows):
-        cols = st.columns(num_columns)
-        for col_idx in range(num_columns):
-            presentation_idx = row * num_columns + col_idx
-            if presentation_idx < len(presentations):
-                presentation = presentations[presentation_idx]
-                with cols[col_idx]:
-                    with st.container(border=True):
-                        st.markdown(f"#### {presentation['title']}")
-                        
-                        pdf_path = presentation["pdf_path"]
-                        
-                        try:
-                            with open(pdf_path, "rb") as f:
-                                pdf_data = f.read()
-                            
-                            file_name = os.path.basename(pdf_path)
-
-                            st.download_button(
-                                label="Download PDF",
-                                data=pdf_data,
-                                file_name=file_name,
-                                mime="application/pdf",
-                                key=f"btn_{presentation_idx}"
-                            )
-                        except FileNotFoundError:
-                             st.error("PDF file not found.")
-                        except Exception as e:
-                             st.error(f"Error loading file.")
-
-def Homepage():
-    with st.container():
-        st.title("Competitive Programming At University of Haifa")
-        st.write("Welcome to the Competitive Programming At University of Haifa website!")
-        st.write("This website is designed to help students learn and practice competitive programming.")
-        st.write("---")
-        
-    st.header("Learning Materials")
-    try:
-        all_presentations = informations.all_presentations
-        add_presentation_grid(all_presentations)
-    except AttributeError:
-        st.error("Could not load presentations. Please check 'informations.py'.")
-    except Exception as e:
-        st.error(f"An error occurred loading presentations: {e}")
-
-        
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
         #         st.rerun()
@@ -226,7 +197,7 @@ def Homepage():
         #             greedy algorithms, and basic dynamic programming. You'll practice sorting,
         #             prefix sums, greedy interval selection, and subset-sum variations using
         #             classic problems from the CSES Problem Set.
-        #             """)
+        #            """)
         #     new_off = week(week1u, week1l, week1s, tasks, 0)
 
         # with st.container():
@@ -238,7 +209,7 @@ def Homepage():
         #             applications. Topics include breadth-first search (BFS), depth-first search (DFS),
         #             topological sorting for DAGs, Dijkstra’s algorithm for shortest paths, and
         #             cycle detection. Problems are selected to build strong intuition for graph traversal.
-        #             """)
+        #            """)
         #     new_off = week(week2u, week2l, week2s, tasks, new_off)
 
         # with st.container():
@@ -282,11 +253,8 @@ def Homepage():
         #     """)
         #     new_off = week(week5u, week5l, week5s, tasks, new_off)
         
-    db_handler.save_db(di)
+        db_handler.save_db(di)
 
-home_page = st.Page(Homepage, title="Home", icon=":material/home:")
-leaderboard_page = st.Page("Leaderboard.py", title="Leaderboard", icon=":material/leaderboard:")
-profile_page = st.Page("Profile.py", title="Profile", icon=":material/person:")
-
-pg = st.navigation([home_page, leaderboard_page, profile_page])
-pg.run()
+    #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
+    pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py'])
+    pg.run()
