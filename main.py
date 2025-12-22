@@ -198,14 +198,6 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             
-        st.header("Learning Materials")
-        try:
-            all_presentations = informations.all_presentations
-            add_presentation_grid(all_presentations)
-        except AttributeError:
-            st.error("Could not load presentations. Please check 'informations.py'.")
-        except Exception as e:
-            st.error(f"An error occurred loading presentations: {e}")
     
             
             # with st.container():
