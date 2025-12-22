@@ -164,11 +164,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
-        try:
-            with open('presentations/1-CPP+STL/cpp+stl.pptx.pdf', "rb") as f:
-            st.download_button(label='Week 1 Presentation', data=f.read(), file_name='Competitive-Programming-week-1.pdf', key='cpw11819')
-        except FileNotFoundError:
-            st.error("Presentation file not found.")
+        
 
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
