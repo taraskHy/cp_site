@@ -1,4 +1,4 @@
-from Material import add_presentation_grid
+import Material
 import streamlit as st
 import pickle
 from pathlib import Path
@@ -12,6 +12,7 @@ from streamlit_star_rating import st_star_rating
 from data import *
 from codeforces_parser import fetch_user
 import db_handler
+from Material import add_presentation_grid
 
 
 
