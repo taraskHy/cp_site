@@ -12,13 +12,9 @@ from data import *
 from codeforces_parser import fetch_user
 import db_handler
 import os
-import Material
-import informations 
-
-
+import informations
 
 st.set_page_config(page_title="Competitive Programming At University of Haifa", page_icon=":shark:", layout="wide")
-
 
 di = db_handler.load_db()
 
@@ -161,7 +157,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
 
 
 def add_presentation_grid(presentations):
-    # Displays a grid of presentations with download buttons (No Images).
+    # Displays a grid of presentations with download buttons.
     
     num_columns = 3
     num_rows = (len(presentations) + num_columns - 1) // num_columns
@@ -175,6 +171,7 @@ def add_presentation_grid(presentations):
                 with cols[col_idx]:
                     with st.container(border=True):
                         st.markdown(f"#### {presentation['title']}")
+                        
                         pdf_path = presentation["pdf_path"]
                         
                         try:
