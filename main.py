@@ -157,31 +157,31 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         authenticator.logout('Logout', 'sidebar')
 
 
-    def Homepage():
-        PRESENTATIONS_DIR = Path(__file__).resolve().parent / "presentations"
-        with st.container():
-            st.title("Competitive Programming At University of Haifa")
-            st.write("Welcome to the Competitive Programming At University of Haifa website!")
-            st.write("This website is designed to help students learn and practice competitive programming.")
-            st.write("---")
-            st.header("Presentations")
+def Homepage():
+    PRESENTATIONS_DIR = Path(__file__).resolve().parent / "presentations"
+    with st.container():
+        st.title("Competitive Programming At University of Haifa")
+        st.write("Welcome to the Competitive Programming At University of Haifa website!")
+        st.write("This website is designed to help students learn and practice competitive programming.")
+        st.write("---")
+        st.header("Presentations")
     
-            PRESENTATIONS_DIR = Path(__file__).resolve().parent / "presentations"
-            pdf_path = PRESENTATIONS_DIR / "1-CPP+STL" / "cpp+stl.pptx.pdf"
+        PRESENTATIONS_DIR = Path(__file__).resolve().parent / "presentations"
+        pdf_path = PRESENTATIONS_DIR / "1-CPP+STL" / "cpp+stl.pptx.pdf"
             
-            st.write("PDF path:", str(pdf_path))
-            st.write("Exists:", pdf_path.exists())
+        st.write("PDF path:", str(pdf_path))
+        st.write("Exists:", pdf_path.exists())
             
-            if pdf_path.exists():
-                st.download_button(
-                    label="Week 1 Presentation",
-                    data=pdf_path.read_bytes(),
-                    file_name="cpp+stl.pptx.pdf",
-                    mime="application/pdf",
-                    key="cp_week1_pdf",
-                )
-            else:
-                st.error("PDF not found. Check the path and make sure the file is included in the deployed repo.")
+        if pdf_path.exists():
+            st.download_button(
+                label="Week 1 Presentation",
+                data=pdf_path.read_bytes(),
+                file_name="cpp+stl.pptx.pdf",
+                mime="application/pdf",
+                key="cp_week1_pdf",
+            )
+        else:
+            st.error("PDF not found. Check the path and make sure the file is included in the deployed repo.")
                 
 
         # with st.container():
