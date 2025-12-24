@@ -159,22 +159,12 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
 
     def Homepage():
         with st.container():
-            PRESENTATIONS_DIR = Path(__file__).resolve().parent / "presentations"
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
     
-            pdf_path = PRESENTATIONS_DIR / "1-CPP+STL" / "cpp+stl.pptx.pdf"
-    
-            st.download_button(
-                label="Week 1 Presentation",
-                data=pdf_path.read_bytes(),
-                file_name="cpp+stl.pptx.pdf",
-                mime="application/pdf",
-                key="cp_week1_pdf"
-            )
 
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
