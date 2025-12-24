@@ -12,6 +12,9 @@ from data import *
 from codeforces_parser import fetch_user
 import db_handler
 
+from pathlib import Path
+import streamlit as st
+
 
 
 st.set_page_config(page_title="Competitive Programming At University of Haifa", page_icon=":shark:", layout="wide")
@@ -158,13 +161,26 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
 
 
     def Homepage():
+        PRESENTATIONS_DIR = Path(__file__).resolve().parent 
         with st.container():
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
-        
+            for p in sorted(PRESENTATIONS_DIR.rglob("*")):
+                if p.is_file() and p.suffix.lower() in {".pdf", ".pptx", ".ppt"}:
+                    st.download_button(
+                        label=f"Download: {p.name}",
+                        data=p.read_bytes(),
+                        file_name=p.name,
+                        mime=(
+                            "application/pdf" if p.suffix.lower() == ".pdf"
+                            else "application/vnd.openxmlformats-officedocument.presentationml.presentation" if p.suffix.lower() == ".pptx"
+                            else "application/vnd.ms-powerpoint"
+                        ),
+                        key=f"dl_{p.as_posix()}",
+                    )
 
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
