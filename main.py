@@ -12,9 +12,6 @@ from data import *
 from codeforces_parser import fetch_user
 import db_handler
 
-from pathlib import Path
-import streamlit as st
-
 
 
 st.set_page_config(page_title="Competitive Programming At University of Haifa", page_icon=":shark:", layout="wide")
@@ -139,6 +136,16 @@ def reformat_tasks(tasks, cf):
         new_tasks[str(key)+'f'] = value
     return new_tasks
 
+def pptx_download_button(pptx_path: str, label: str, download_name: str, key: str):
+    pr = Presentation(pptx_path)
+    bo = BytesIO()
+    pr.save(bo)
+    st.download_button(
+        label=label,
+        data=bo.getvalue(),
+        file_name=download_name,
+        key=key
+    )
 
 def return_parsing():
     cses_handle = di['usernames'][st.session_state.get('username')].get('cses_handle')
@@ -168,19 +175,12 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
-            for p in sorted(PRESENTATIONS_DIR.rglob("*")):
-                if p.is_file() and p.suffix.lower() in {".pdf", ".pptx", ".ppt"}:
-                    st.download_button(
-                        label=f"Download: {p.name}",
-                        data=p.read_bytes(),
-                        file_name=p.name,
-                        mime=(
-                            "application/pdf" if p.suffix.lower() == ".pdf"
-                            else "application/vnd.openxmlformats-officedocument.presentationml.presentation" if p.suffix.lower() == ".pptx"
-                            else "application/vnd.ms-powerpoint"
-                        ),
-                        key=f"dl_{p.as_posix()}",
-                    )
+            pptx_download_button(
+                pptx_path="presentations/1-CPP+STL/cpp+stl",
+                label="Week 1 Presentation",
+                download_name="Competitive-Programming-week-1.pptx",
+                key="cp_week1"
+            )
 
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
