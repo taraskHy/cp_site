@@ -171,13 +171,13 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
-            for i, p in enumerate(sorted(Path("presentations").rglob("*.pdf"))):
+            pdf_path = Path("presentations/1-CPP+STL/cpp+stl.pptx.pdf")
                 st.download_button(
-                    label=f"Download: {p.stem}",
-                    data=p.read_bytes(),
-                    file_name=p.name,
+                    label="Week 1 Presentation", 
+                    data=pdf_path.read_bytes(),
+                    file_name="cpp+stl.pptx.pdf",
                     mime="application/pdf",
-                    key=f"pdf_{i}"
+                    key="cp_week1_pdf"
                 )
 
         # with st.container():
