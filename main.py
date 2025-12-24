@@ -176,7 +176,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("---")
             st.header("Presentations")
             pptx_download_button(
-                pptx_path="presentations/1-CPP+STL/cpp+stl",
+                pptx_path="presentations/1-CPP+STL/cpp+stl.pptx",
                 label="Week 1 Presentation",
                 download_name="Competitive-Programming-week-1.pptx",
                 key="cp_week1"
