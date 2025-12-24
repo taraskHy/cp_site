@@ -136,12 +136,6 @@ def reformat_tasks(tasks, cf):
         new_tasks[str(key)+'f'] = value
     return new_tasks
 
-def pptx_download_button(pptx_path: str, label: str, download_name: str, key: str):
-    pr = Presentation(pptx_path)
-    bo = BytesIO()
-    pr.save(bo)
-    bo.seek(0)
-    st.download_button(label=label, data=bo.getvalue(), file_name=download_name, key=key)
 
 def return_parsing():
     cses_handle = di['usernames'][st.session_state.get('username')].get('cses_handle')
@@ -171,14 +165,15 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
+        
             pdf_path = Path("presentations/1-CPP+STL/cpp+stl.pptx.pdf")
-                st.download_button(
-                    label="Week 1 Presentation", 
-                    data=pdf_path.read_bytes(),
-                    file_name="cpp+stl.pptx.pdf",
-                    mime="application/pdf",
-                    key="cp_week1_pdf"
-                )
+            st.download_button(
+                label="Week 1 Presentation", 
+                data=pdf_path.read_bytes(),
+                file_name="cpp+stl.pptx.pdf",
+                mime="application/pdf",
+                key="cp_week1_pdf"
+            )
 
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
