@@ -172,12 +172,12 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("---")
             st.header("Presentations")
             for i, p in enumerate(sorted(Path("presentations").rglob("*.pptx"))):
-            pptx_download_button(
-                pptx_path=str(p),
-                label=p.stem,
-                download_name=p.name,
-                key=f"pptx_{i}"
-            )
+                pptx_download_button(
+                    pptx_path=str(p),
+                    label=p.stem,
+                    download_name=p.name,
+                    key=f"pptx_{i}"
+                )
 
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
