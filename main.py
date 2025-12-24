@@ -159,6 +159,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
 
     def Homepage():
         with st.container():
+            PRESENTATIONS_DIR = Path(__file__).resolve().parent / "presentations"
             st.title("Competitive Programming At University of Haifa")
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
