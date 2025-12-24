@@ -140,12 +140,8 @@ def pptx_download_button(pptx_path: str, label: str, download_name: str, key: st
     pr = Presentation(pptx_path)
     bo = BytesIO()
     pr.save(bo)
-    st.download_button(
-        label=label,
-        data=bo.getvalue(),
-        file_name=download_name,
-        key=key
-    )
+    bo.seek(0)
+    st.download_button(label=label, data=bo.getvalue(), file_name=download_name, key=key)
 
 def return_parsing():
     cses_handle = di['usernames'][st.session_state.get('username')].get('cses_handle')
@@ -175,11 +171,12 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
+            for i, p in enumerate(sorted(Path("presentations").rglob("*.pptx"))):
             pptx_download_button(
-                pptx_path="presentations/1-CPP+STL/cpp+stl.pptx",
-                label="Week 1 Presentation",
-                download_name="Competitive-Programming-week-1.pptx",
-                key="cp_week1"
+                pptx_path=str(p),
+                label=p.stem,
+                download_name=p.name,
+                key=f"pptx_{i}"
             )
 
         # with st.container():
