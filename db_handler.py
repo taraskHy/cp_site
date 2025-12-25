@@ -53,7 +53,7 @@ def _ssl_ctx():
 
 
 def _connect():
-    host = "mysql-cpuoh2026-cpuoh2026.h.aivencloud.com"
+    host = "mysql-428390-cpuoh2026.i.aivencloud.com"
     port = 16235
     try:
         socket.getaddrinfo(host, port)
@@ -64,13 +64,12 @@ def _connect():
         except Exception:
             pass
         return None
-
     try:
         return pymysql.connect(
             host=host,
             port=port,
             user="avnadmin",
-            password="AVNS_6_akBbjIQV3juRmmGY6",
+            password="AVNS_qWQzypc8HM0DbjF06ZV",
             db="defaultdb",
             charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor,
