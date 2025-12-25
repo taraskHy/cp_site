@@ -163,10 +163,10 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
             st.header("Presentations")
-            st.write("Here is the presentation for this week:")
+            st.write("Here is some syntax in cpp and some useful data structures:")
             path = "presentations/1-CPP+STL/cpp+stl.pptx.pdf"
             bo = BytesIO(open(path, 'rb').read())
-            st.download_button(label='Week 1 Presentation', data=bo.getvalue(), file_name='Competitive-Programming-week-1.pdf', key='cpw11819')
+            st.download_button(label='Intro to cpp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11819')
 
 
             # with st.container():
