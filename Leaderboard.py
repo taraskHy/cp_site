@@ -94,9 +94,7 @@ st.table(df)
 st.subheader('Problem Scoring Method')
 st.write("""
         The way this works is each problem has a difficulty rating via stars, and for each problem with  $x$  stars you get
-        a score of $(x+1)^2$. Additionally, the tiebreaker between two contestants is firstly their etgar year (as 
-        it is simply more impressive to solve the same amount of questions but a year less into the degree), and 
-        secondly their time of solving the last problem. 
+        a score of $(x+1)^2$. 
         """)
 
 if tot:
