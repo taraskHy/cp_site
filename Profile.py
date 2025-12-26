@@ -31,7 +31,7 @@ if st.session_state.get('profcses', 0) == 1:
         cses_username = st.text_input('CSES Username', key='cses_username')
         cses_handle = st.text_input('CSES Handle (Go to your profile, it\'s the numbers in the URL!)',
                                     key='cses_handle')
-        etgar_num = st.text_input('What is the number of your ETGAR? (18/19/20)',
+        etgar_num = st.text_input('What is the number of your ETGAR? (18/19/20) If you are not from Etgar, enter 0 :)',
                                   key='etgar')
         submitted = st.form_submit_button('Submit')
         if cses_username and cses_handle and submitted and etgar_num:
