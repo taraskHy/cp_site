@@ -162,12 +162,22 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("Welcome to the Competitive Programming At University of Haifa website!")
             st.write("This website is designed to help students learn and practice competitive programming.")
             st.write("---")
+
+        with st.container():
+            if not st.session_state.get('authentication_status'):
+                st.rerun()
+            tasks, cses_handle = return_parsing()
+            st.write("---")
+            st.header("Week one - The Basics")
+            new_off = week(week1u, week1l, week1s, tasks, 0)
+            st.write("---")
+
+        with st.container():
             st.header("Presentations")
             st.write("Here is some syntax in cpp and some useful data structures:")
             path = "presentations/1-CPP+STL/cpp+stl.pptx.pdf"
             bo = BytesIO(open(path, 'rb').read())
             st.download_button(label='Intro to cpp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11819')
-
 
             # with st.container():
             #     if not st.session_state.get('authentication_status'):

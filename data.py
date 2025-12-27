@@ -1,3 +1,12 @@
+
+week1s = [0,0]
+week1u = [
+    ['1068s', 'https://cses.fi/problemset/task/1068', 's']
+]
+week1l = [
+    ['4Af', 'https://codeforces.com/problemset/problem/4/A', 'f']
+
+]
 '''
 # week 1
 week1s = [0, 0, 0, 1, 1, 0, 2, 2, 2]
@@ -79,9 +88,8 @@ week5l = [
 stars = week1s + week2s + week3s + week4s + week5s
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
 '''
-stars = []
-total_prob = []
-#total_cf = ['2029C']
-total_cf = [] #list of Codeforces problem IDs
+stars = week1s
+total_prob = week1u + week1l
+total_cf = ['4A'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']
