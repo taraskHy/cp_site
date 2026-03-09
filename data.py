@@ -1,12 +1,31 @@
 
-week1s = [0,0]
-week1u = [
+week0s = [0,0]
+week0u = [
     ['1068s', 'https://cses.fi/problemset/task/1068', 's']
 ]
-week1l = [
+week0l = [
     ['4Af', 'https://codeforces.com/problemset/problem/4/A', 'f']
 
 ]
+
+week1s = [0,0,0,0,0,0,1,1,1,2,2]
+week1u = [
+    ['103081f', 'https://codeforces.com/gym/103081/problem/E', 'f'],
+    ['545f', 'https://codeforces.com/problemset/problem/545/C', 'f'],
+    ['1472f', 'https://codeforces.com/problemset/problem/1472/C', 'f'],
+    ['1934f', 'https://codeforces.com/problemset/problem/1934/B', 'f'],
+    ['1755s', 'https://cses.fi/problemset/task/1755', 's']
+]
+week1l = [
+    ['2167f', 'https://codeforces.com/contest/2167/problem/C', 'f'],
+    ['2094f', 'https://codeforces.com/contest/2094/problem/D', 'f'],
+    ['698f', 'https://codeforces.com/problemset/problem/698/A', 'f'],
+    ['3399s', 'https://cses.fi/problemset/task/3399', 's'],
+    ['2413s', 'https://cses.fi/problemset/task/2413', 's'],
+    ['2167s', 'https://codeforces.com/contest/2167/problem/G', 's']
+]
+
+
 '''
 # week 1
 week1s = [0, 0, 0, 1, 1, 0, 2, 2, 2]
@@ -88,8 +107,8 @@ week5l = [
 stars = week1s + week2s + week3s + week4s + week5s
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
 '''
-stars = week1s
-total_prob = week1u + week1l
+stars = week0s + week1s
+total_prob = week0u + week0l + week1u + week1l
 total_cf = ['4A'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']
