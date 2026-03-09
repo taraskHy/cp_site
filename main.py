@@ -176,7 +176,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
                 st.rerun()
             tasks, cses_handle = return_parsing()
             st.header("Week one - greedy and dynamic programming")
-            new_off = week(week1u, week1l, week1s, tasks, 0)
+            new_off = week(week1u, week1l, week1s, tasks, new_off)
             st.write("---")
 
         with st.container():
