@@ -182,9 +182,13 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
         with st.container():
             st.header("Presentations")
             st.write("Here is some syntax in cpp and some useful data structures:")
-            path = "presentations/1-CPP+STL/cpp+stl.pptx.pdf"
+            path = "presentations/Learning_Gruop/Week1.pdf"
             bo = BytesIO(open(path, 'rb').read())
             st.download_button(label='Intro to cpp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11819')
+            st.write("week one presentations:")
+            path = "presentations/1-CPP+STL/cpp+stl.pptx.pdf"
+            bo = BytesIO(open(path, 'rb').read())
+            st.download_button(label='Greedy an DP', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11820')
 
             # with st.container():
             #     if not st.session_state.get('authentication_status'):
