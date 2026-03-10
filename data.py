@@ -8,7 +8,7 @@ week0l = [
 
 ]
 
-week1s = [0,0,0,0,0,1,1,1,2,2]
+week1s = [0,0,0,0,1,1,1,2,2]
 week1u = [
     ['103081Ef', 'https://codeforces.com/gym/103081/problem/E', 'f'],
     ['545Cf', 'https://codeforces.com/problemset/problem/545/C', 'f'],
@@ -16,7 +16,6 @@ week1u = [
     ['1755s', 'https://cses.fi/problemset/task/1755', 's']
 ]
 week1l = [
-    ['2167Gf', 'https://codeforces.com/contest/2167/problem/G', 'f'],
     ['2094Df', 'https://codeforces.com/contest/2094/problem/D', 'f'],
     ['698Af', 'https://codeforces.com/problemset/problem/698/A', 'f'],
     ['3399s', 'https://cses.fi/problemset/task/3399', 's'],
