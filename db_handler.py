@@ -115,3 +115,25 @@ def load_db():
         return json.loads(row["content"])
     return {"usernames": {}}
 
+def reset_db():
+    conn = _connect()
+    if conn is None:
+        return False
+
+    try:
+        c = conn.cursor()
+        c.execute("CREATE TABLE IF NOT EXISTS data (id INT PRIMARY KEY, content LONGTEXT)")
+        c.execute("DELETE FROM data WHERE id = 1")
+        conn.commit()
+        conn.close()
+        return True
+
+    except pymysql.MySQLError as e:
+        conn.rollback()
+        conn.close()
+        try:
+            import streamlit as st
+            st.error(f"DB reset failed: {getattr(e, 'args', e)}")
+        except Exception:
+            pass
+        return False
