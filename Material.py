@@ -2,31 +2,75 @@ import streamlit as st
 from pathlib import Path
 import pickle
 import pandas as pd
-import db_handler
+import streamlit as st
+import pickle
+from pathlib import Path
+import streamlit_authenticator as stauth
+import json
+from pptx import Presentation
+from io import BytesIO
+from streamlit_star_rating import st_star_rating
+
 
 import data
 
 admins = data.admins
 
 st.title("Our Notebook (Partially)")
-st.header("Here you will find the algorithm implementations for things we believe you need.")
+st.header("Here you will find the algorithm implementations for things we believe you need and the presentations from class.")
 
-t = st.tabs(["Dinic", "SCC", "Union Find", "MCMF", "Hungarian", "Seg Tree", "Lazy Seg Tree", "Fenwick",
-             "Binary Lifting"
-             ])
+SHOW_ALGORITHM_TABS = False
 
-with t[0]:
+public_tab_names = [
+    "Presentations"
+]
+
+algorithm_tab_names = [
+    "Dinic",
+    "SCC",
+    "Union Find",
+    "MCMF",
+    "Hungarian",
+    "Seg Tree",
+    "Lazy Seg Tree",
+    "Fenwick",
+    "Binary Lifting"
+]
+
+tab_names = public_tab_names.copy()
+
+if SHOW_ALGORITHM_TABS:
+    tab_names += algorithm_tab_names
+
+tabs = st.tabs(tab_names)
+tab = dict(zip(tab_names, tabs))
+
+with tab["Presentations"]:
+    st.header("Presentations")
+    # st.write("Here is some syntax in cpp and some useful data structures:")
+    # path = "presentations/1-CPP+STL/cpp+stl.pptx.pdf"
+    # bo = BytesIO(open(path, 'rb').read())
+    # st.download_button(label='Intro to cpp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11819')
+    # st.write("week one presentations:")
+    # path = "presentations/Learning_Group/Week1.pdf"
+    # bo = BytesIO(open(path, 'rb').read())
+    # st.download_button(label='Greedy and DP', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11825647')
+
+if not SHOW_ALGORITHM_TABS:
+    st.stop()
+
+with tab["Dinic"]:
     st.markdown("""
     Description: Flow algorithm with complexity $O(V E \\log U)$ where $U = \\mathrm{max} |cap|$.  
-    
+
     Time Complexity: $O(\\mathrm{min}(E^{\\frac{1}{2}}, V^{\\frac{2}{3}})E)$   if $U = 1$.
-    
+
     $O(\\sqrt V E)$ for bipartite matching.""")
 
 
     code = """
     #define sz(yarin) ((int)(yarin).size())
-    
+
     struct Dinic {
         struct Edge {
             int to, rev;
@@ -69,18 +113,18 @@ with t[0]:
         }
         bool leftOfMinCut(int a) { return lvl[a] != 0; }
     };
-    
+
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[1]:
+with tab["SCC"]:
     st.markdown('''
     Description: Finds strongly connected components of a directed graph. Visits/indexes SCCs in topological order. 
-    
+
     Time: $O(|V| + |E|)$ Usage: scc(graph) returns an array that has the ID of each node's SCC.''')
 
     code = """
-    
+
     namespace SCCKosaraju {
         vector<vector<int>> adj, radj;
         vector<int> todo, comp;
@@ -110,22 +154,22 @@ with t[1]:
             return comp;
         }
     }; // namespace SCCKosaraju
-    
+
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[2]:
+with tab["Union Find"]:
 
 
     st.markdown('''
     Description: The regular Union Find from class.
-    
+
     Time: $O(\\alpha (n))$ for both operations. 
-    
+
     Run pre() before usage.''')
 
     code = """
-    
+
     const int maxn =2e5+5;
     int p[maxn], s[maxn];
     void pre(){
@@ -137,18 +181,18 @@ with t[2]:
         if(s[a] < s[b]) swap(a, b);
         return s[a] += s[b], p[b] = a, 1;
     }
-    
+
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[3]:
+with tab["MCMF"]:
     st.markdown('''
     Description: Min-cost max-flow. cap[i][j] != cap[j][i] is allowed; double edges are not.
-    
+
     If costs can be negative, call setpi before maxflow, but note that negative cost cycles are not supported.
-    
+
     To obtain the actual flow, look at positive values only.
-    
+
     Time: Approximately $O(E^2)$''')
 
     code = """
@@ -215,21 +259,21 @@ with t[3]:
               pi[e.to] = v, ch = 1;
         assert(it >= 0); // negative cost cycle
       } };
-    
+
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[4]:
+with tab["Hungarian"]:
 
     st.markdown('''
     Description: Given a weighted bipartite graph, matches every node on
     the left with a node on the right such that no nodes are in two matchings and the sum of the edge weights is minimal. 
-    
+
     Takes cost[N][M], where cost[i][j] = cost for L[i] to be matched with R[j] and
     returns (min cost, match), where L[i] is matched with R[match[i]]. 
-    
+
     Negate costs for max cost. Requires $N \\le M$.
-    
+
     Time: $O(N^2\\cdot M)$''')
 
     code = """
@@ -262,18 +306,18 @@ with t[4]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[5]:
+with tab["Sag Tree"]:
     st.markdown('''
     This is the implementation of Segment Tree, using arrays.
-    
+
     This version supports the following:
-    
+
     Build ($n$) : $O(n)$
-    
+
     Query sum $[l, r]$: $O(\\log n)$
-    
+
     Update add to $A_i$ another $k$ : $O(\\log n)$
-    
+
     ''')
 
     code = """
@@ -283,14 +327,14 @@ with t[5]:
         segment_tree_arr(int n): value(4*n, 0), n(n){
             build(1, 1, n);
         }
-    
+
         void build(int node, int l, int r){
             if(l == r) return;
             int m = (l+r) / 2;
             build(2*node, l, m), build(2*node + 1, m+1, r);
             value[node] = value[2*node] + value[2*node + 1];
         }
-    
+
         inline void update(int i, int k) { _update(1, i, k, 1, n); }
         void _update(int node, int i, int k, int l, int r){
             value[node] += k;
@@ -309,16 +353,16 @@ with t[5]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[6]:
+with tab["Lazy Seg Tree"]:
     st.markdown('''
     This is the implementation of Lazy Segment Tree, using arrays.
-    
+
     This version supports the following:
-    
+
     Build ($n$) : $O(n)$
-    
+
     Query sum $[l, r]$: $O(\\log n)$
-    
+
     Update add to range $[l, r]$ another $k$ : $O(\\log n)$
     ''')
 
@@ -329,14 +373,14 @@ with t[6]:
         lazy_segment_tree_arr(int n): value(4*n, 0), lazy(4*n, 0), n(n){
             build(1, 1, n);
         }
-    
+
         void build(int node, int l, int r){
             if(l == r) return;
             int m = (l+r) / 2;
             build(2*node, l, m), build(2*node + 1, m+1, r);
             pullup(node);
         }
-    
+
         inline void pullup(int node){ value[node] = value[2*node] + value[2*node + 1]; }
         inline void pushdown(int node, int l, int m, int r){
             int lz = lazy[node];
@@ -346,7 +390,7 @@ with t[6]:
             lazy[2*node+1]  += lz;
             lazy[node] = 0;
         }
-    
+
         inline void update(int l, int r, int k) { _update(1, l, r, k, 1, n); }
         void _update(int node, int ql, int qr, int k, int l, int r){
             if(r < ql || qr < l) return;
@@ -373,14 +417,14 @@ with t[6]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[7]:
+with tab["Fenwick"]:
     st.markdown('''
     Description: Query $[0, i)$ and $[l, r)$ sums, and point updates.
-    
+
     kth() returns the smallest index i s.t. query($i$) $> k$.
-    
+
     Right endpoint is exclusive.
-    
+
     Time: $O(\\log n)$ for all ops.''')
 
     code = """
@@ -397,9 +441,9 @@ with t[7]:
             for (; i; i -= i & -i) ans += s[i];
             return ans; 
         } // INCLUSIVE-EXCLUSIVE interval [l, r)
-           
+
         T query(int l, int r) { return query(r) - query(l); }
-        
+
         int kth(T k) { // 0-indexed, returns n if k > sum of tree
             if (k < 0) return -1;
             int i = 0;
@@ -412,12 +456,12 @@ with t[7]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
-with t[8]:
+with tab["Binary Lifting"]:
     st.markdown('''
     Description: Calculate jumps up a tree, to support fast upward jumps and LCAs.
-    
+
     Assumes the root node points to itself.
-    
+
     Time: construction $O(N)$, queries $O(\\log N)$''')
 
     code = """
@@ -447,5 +491,3 @@ with t[8]:
     };
     """
     st.code(code, language='cpp', line_numbers=True)
-
-

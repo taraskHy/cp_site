@@ -8,6 +8,8 @@ week0l = [
 
 ]
 
+'''
+
 week1s = [0,0,0,0,0,0,0,1,1,1,2,2]
 week1u = [
     ['103081Ef', 'https://codeforces.com/gym/103081/problem/E', 'f'],
@@ -27,7 +29,7 @@ week1l = [
 ]
 
 
-'''
+
 # week 1
 week1s = [0, 0, 0, 1, 1, 0, 2, 2, 2]
 week1u = [
@@ -106,10 +108,11 @@ week5l = [
 
 # Final metadata
 stars = week1s + week2s + week3s + week4s + week5s
+total_cf = ['4A','103081E','545C','1472C','2167C','2094D','698A','2167G'] #list of Codeforces problem IDs
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
 '''
-stars = week0s + week1s
-total_prob = week0u + week0l + week1u + week1l
-total_cf = ['4A','103081E','545C','1472C','2167C','2094D','698A','2167G'] #list of Codeforces problem IDs
+stars = week0s
+total_prob = week0u
+total_cf = [] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']

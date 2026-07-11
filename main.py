@@ -171,24 +171,13 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             new_off = week(week0u, week0l, week0s, tasks, 0)
             st.write("---")
 
-        with st.container():
-            if not st.session_state.get('authentication_status'):
-                st.rerun()
-            tasks, cses_handle = return_parsing()
-            st.header("Week one - greedy and dynamic programming")
-            new_off = week(week1u, week1l, week1s, tasks, new_off)
-            st.write("---")
-
-        with st.container():
-            st.header("Presentations")
-            st.write("Here is some syntax in cpp and some useful data structures:")
-            path = "presentations/1-CPP+STL/cpp+stl.pptx.pdf"
-            bo = BytesIO(open(path, 'rb').read())
-            st.download_button(label='Intro to cpp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11819')
-            st.write("week one presentations:")
-            path = "presentations/Learning_Group/Week1.pdf"
-            bo = BytesIO(open(path, 'rb').read())
-            st.download_button(label='Greedy and DP', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11825647')
+        # with st.container():
+        #     if not st.session_state.get('authentication_status'):
+        #         st.rerun()
+        #     tasks, cses_handle = return_parsing()
+        #     st.header("Week one - greedy and dynamic programming")
+        #     new_off = week(week1u, week1l, week1s, tasks, new_off)
+        #     st.write("---")
 
             # with st.container():
             #     if not st.session_state.get('authentication_status'):
@@ -266,5 +255,5 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             db_handler.save_db(di)
 
     #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
-    pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py'])
+    pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
     pg.run()
