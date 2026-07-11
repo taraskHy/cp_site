@@ -19,15 +19,25 @@ def reformat_tasks(tasks, cf):
 
 
 
-
 def return_parsing():
-    cses_handle = di['usernames'][st.session_state.get('username')].get('cses_handle')
-    # print(cses_handle)
+    username = st.session_state.get('username')
+
+    cses_handle = di['usernames'][username].get('cses_handle')
+    cf_handle = di['usernames'][username].get('cf_handle')
+
     tasks = parser.get_user_info(cses_handle)
-    cf_tasks = fetch_user(total_cf, di['usernames'][st.session_state.get('username')].get('cf_handle'))
+    cf_tasks = fetch_user(total_cf, cf_handle)
     if cf_tasks == -1:
-        st.warning('Please Fill in your Codeforces Information in the Profile Section!')
+        st.warning(
+            'Please fill in your Codeforces information '
+            'in the Profile section!'
+        )
         st.stop()
+
+    # Codeforces API/network failure
+    if cf_tasks is None:
+        st.stop()
+
     tasks = reformat_tasks(tasks, cf_tasks)
     return tasks, cses_handle
 
