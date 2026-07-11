@@ -113,6 +113,6 @@ total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week
 '''
 stars = week0s
 total_prob = week0u +week0l
-total_cf = [] #list of Codeforces problem IDs
+total_cf = ['4A'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']
