@@ -51,10 +51,10 @@ with tab["Presentations"]:
     # path = "presentations/1-CPP+STL/cpp+stl.pptx.pdf"
     # bo = BytesIO(open(path, 'rb').read())
     # st.download_button(label='Intro to cpp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11819')
-    # st.write("week one presentations:")
-    # path = "presentations/Learning_Group/Week1.pdf"
-    # bo = BytesIO(open(path, 'rb').read())
-    # st.download_button(label='Greedy and DP', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11825647')
+    st.write("week one presentations:")
+    path = "2026_presentations/Week_1/CP_2026_lecture1.pdf"
+    bo = BytesIO(open(path, 'rb').read())
+    st.download_button(label='week 1 - greedy, dp & cp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11825647')
 
 if not SHOW_ALGORITHM_TABS:
     st.stop()
