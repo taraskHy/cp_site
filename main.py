@@ -120,9 +120,9 @@ def week(list_of_questions, list_of_locked, stars, tasks, totoff):
             # db_handler.save_db(di)
         if su == off + len(p):
             st.success('Congrats! That is all for this week!')
-        st.subheader(f'So far you have completed {su}/{off + len(p)} problems this week!')
+        st.subheader(f'So far you have completed {su}/{off + len(p)} problems from this subject!')
     else:
-        st.subheader(f'So far you have completed {su}/{len(p)} problems this week!')
+        st.subheader(f'So far you have completed {su}/{len(p)} problems from this subject!')
     return totoff + len(stars)
 
 

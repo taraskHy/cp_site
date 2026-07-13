@@ -13,13 +13,13 @@ week0l = [
 
 ]
 
-week1s = [1,0,1,2,1]
+week1s = [0,1,1,1,2]
 week1u = [
-    ['1374Cf', 'https://codeforces.com/problemset/problem/1374/C', 'f'],
     ['1669Ff', 'https://codeforces.com/problemset/problem/1669/F', 'f'],
+    ['1374Cf', 'https://codeforces.com/problemset/problem/1374/C', 'f'],
     ['1068', 'https://cses.fi/problemset/task/1635', 's'],
-    ['1094', 'https://cses.fi/problemset/task/1093 ', 's'],
     ['1755', 'https://cses.fi/problemset/task/1158 ', 's'],
+    ['1094', 'https://cses.fi/problemset/task/1093 ', 's'],
 ]
 week1l = [
 
@@ -129,6 +129,6 @@ total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week
 '''
 stars = week0s + week1s
 total_prob = week0u + week0l + week1u + week1l
-total_cf = ['4A','1374C','1669Ff'] #list of Codeforces problem IDs
+total_cf = ['4A','1669Ff', '1374C'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']
