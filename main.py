@@ -183,9 +183,9 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             tasks, cses_handle = return_parsing()
             st.header("Week one - Greedy & DP")
             st.subheader("Greedy:")
-            new_off = week(week1u[0,1], week1l, week1s[0,1], tasks, 0)
+            new_off = week(week1u[:2],[],week1s[:2],tasks,new_off)
             st.subheader("DP:")
-            new_off = week(week1u[2,], week1l, week1s[2,], tasks, 0)
+            new_off = week(week1u[2:], week1l, week1s[2:],tasks, new_off)
             st.write("---")
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
