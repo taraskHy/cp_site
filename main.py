@@ -20,6 +20,13 @@ di = db_handler.load_db()
 
 authenticator = stauth.Authenticate(di, 'cpwebsite', '12345', 3)
 
+# If a logged-in session points at an account that no longer exists
+# (renamed or deleted), log it out cleanly instead of crashing.
+if st.session_state.get('authentication_status') and \
+        st.session_state.get('username') not in di['usernames']:
+    authenticator.logout(location='unrendered')
+    st.session_state['reg'] = 1
+
 if 'reg' not in st.session_state:
     st.session_state['reg'] = 1
 
