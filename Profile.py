@@ -23,6 +23,21 @@ if st.session_state.get('username') in data.admins:
         if k:
             if user in di['usernames']:
                 st.table(di['usernames'][user])
+    with st.form('delete user'):
+        user = st.text_input('delete user:', key='del_user')
+        sure = st.checkbox('I am sure I want to permanently delete this account', key='del_sure')
+        k = st.form_submit_button('Delete account')
+        if k:
+            if user == st.session_state.get('username'):
+                st.error('You cannot delete the account you are currently logged in with.')
+            elif user not in di['usernames']:
+                st.error(f'User "{user}" was not found.')
+            elif not sure:
+                st.warning('Check the confirmation box to delete this account.')
+            else:
+                del di['usernames'][user]
+                db_handler.save_db(di)
+                st.success(f'Account "{user}" was deleted.')
 
 if st.button('Change CSES and Etgar info'):
     st.session_state['profcses'] = 1
