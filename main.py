@@ -72,6 +72,14 @@ elif st.session_state['reg'] == 3:
 
 
 
+def show_stars(star_count, key, size):
+    # star_count == -1 marks a practice problem worth 0 points
+    if star_count < 0:
+        st.caption('Practice - no points')
+    else:
+        st_star_rating("", 5, star_count, size, read_only=True, dark_theme=True, key=key)
+
+
 def week(list_of_questions, list_of_locked, stars, tasks, totoff):
     global di
     su = 0
@@ -84,8 +92,7 @@ def week(list_of_questions, list_of_locked, stars, tasks, totoff):
         st.text('Finish these problems to unlock more challenging ones!')
         # print(tasks)
     with mc:
-        k = [st_star_rating("", 5, stars[i], stars_size, read_only=True,
-                            dark_theme=True, key=f's{totoff+i}') for i, _ in enumerate(l)]
+        k = [show_stars(stars[i], f's{totoff+i}', stars_size) for i, _ in enumerate(l)]
     with rc:
         st.write('Here you can see the status of your problems:')
         k = [st.badge(f'Problem {totoff + i + 1}', icon=":material/check:", color="green") if tasks.get(tid, Status.NAT) == Status.AC
@@ -105,8 +112,7 @@ def week(list_of_questions, list_of_locked, stars, tasks, totoff):
             k = [st.link_button(f"Problem {totoff + i + 1 + off}", _[1]) for i, _ in enumerate(l2)]
         with mc:
             print(off, len(l2))
-            k = [st_star_rating("", 5, stars[i+off], stars_size, read_only=True, dark_theme=True,
-                                key=f's{totoff + i+off}') for i, _ in enumerate(l2)]
+            k = [show_stars(stars[i+off], f's{totoff+i+off}', stars_size) for i, _ in enumerate(l2)]
         with rc:
             # st.write('Here you can mark the problems you have completed (they will be saved on your next visit):')
             k2 = [st.badge(f'Problem {totoff + i + off + 1}', icon=":material/check:", color="green") if tasks.get(tid, Status.NAT) == Status.AC

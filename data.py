@@ -1,5 +1,5 @@
 
-week0s = [0,0,0,0,0,0,0]
+week0s = [-1,-1,0,0,0,0,0]
 week0u = [
     ['1068s', 'https://cses.fi/problemset/task/1068', 's'],
     ['4Af', 'https://codeforces.com/problemset/problem/4/A', 'f'],
