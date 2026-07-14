@@ -3,11 +3,11 @@ week0s = [0,0,0,0,0,0,0]
 week0u = [
     ['1068s', 'https://cses.fi/problemset/task/1068', 's'],
     ['4Af', 'https://codeforces.com/problemset/problem/4/A', 'f'],
-    ['1068', 'https://cses.fi/problemset/task/1068', 's'],
-    ['1094', 'https://cses.fi/problemset/task/1094 ', 's'],
-    ['1755', 'https://cses.fi/problemset/task/1755 ', 's'],
-    ['1621', 'https://cses.fi/problemset/task/1621  ', 's'],
-    ['1640', 'https://cses.fi/problemset/task/1640 ', 's'],
+    ['1068s', 'https://cses.fi/problemset/task/1068', 's'],
+    ['1094s', 'https://cses.fi/problemset/task/1094', 's'],
+    ['1755s', 'https://cses.fi/problemset/task/1755', 's'],
+    ['1621s', 'https://cses.fi/problemset/task/1621', 's'],
+    ['1640s', 'https://cses.fi/problemset/task/1640', 's'],
 ]
 week0l = [
 
@@ -17,9 +17,9 @@ week1s = [0,1,1,1,2]
 week1u = [
     ['1669Ff', 'https://codeforces.com/problemset/problem/1669/F', 'f'],
     ['1374Cf', 'https://codeforces.com/problemset/problem/1374/C', 'f'],
-    ['1068', 'https://cses.fi/problemset/task/1635', 's'],
-    ['1755', 'https://cses.fi/problemset/task/1158 ', 's'],
-    ['1094', 'https://cses.fi/problemset/task/1093 ', 's'],
+    ['1635s', 'https://cses.fi/problemset/task/1635', 's'],
+    ['1158s', 'https://cses.fi/problemset/task/1158', 's'],
+    ['1093s', 'https://cses.fi/problemset/task/1093', 's'],
 ]
 week1l = [
 
@@ -129,6 +129,6 @@ total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week
 '''
 stars = week0s + week1s
 total_prob = week0u + week0l + week1u + week1l
-total_cf = ['4A','1669Ff', '1374C'] #list of Codeforces problem IDs
+total_cf = ['4A','1669F', '1374C'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']
