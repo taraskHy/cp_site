@@ -25,16 +25,16 @@ week1l = [
 
 ]
 
-week1hws = [0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 3]
+week1hws = [0, 0, 0, 0, 1, 2, 0, 0, 0, 1, 3]
 week1hw = [
     ['2167Bf', 'https://codeforces.com/contest/2167/problem/B', 'f'],
     ['2167Cf', 'https://codeforces.com/contest/2167/problem/C', 'f'],
-    ['2094Df', 'https://codeforces.com/contest/2094/problem/D', 'f'],
-    ['2167Gf', 'https://codeforces.com/contest/2167/problem/G', 'f'],
-]
-week1hwl = [
     ['443Af', 'https://codeforces.com/problemset/problem/443/A', 'f'],
     ['996Af', 'https://codeforces.com/problemset/problem/996/A', 'f'],
+]
+week1hwl = [
+    ['2094Df', 'https://codeforces.com/contest/2094/problem/D', 'f'],
+    ['2167Gf', 'https://codeforces.com/contest/2167/problem/G', 'f'],
     ['160Af', 'https://codeforces.com/problemset/problem/160/A', 'f'],
     ['34Bf', 'https://codeforces.com/problemset/problem/34/B', 'f'],
     ['1353Bf', 'https://codeforces.com/problemset/problem/1353/B', 'f'],
