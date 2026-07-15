@@ -199,6 +199,8 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             new_off = week(week1u[:2],[],week1s[:2],tasks,new_off)
             st.subheader("DP:")
             new_off = week(week1u[2:], week1l, week1s[2:],tasks, new_off)
+            st.subheader("Homework:")
+            new_off = week(week1hw, week1hwl, week1hws, tasks, new_off)
             st.write("---")
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
