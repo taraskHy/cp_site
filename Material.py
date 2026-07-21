@@ -22,13 +22,14 @@ st.header("Here you will find the algorithm implementations for things we believ
 SHOW_ALGORITHM_TABS = False
 
 public_tab_names = [
-    "Presentations"
-]
-
-algorithm_tab_names = [
-    "Dinic",
+    "Presentations",
     "SCC",
     "Union Find",
+    "Dijkstra"
+
+]
+algorithm_tab_names = [
+    "Dinic",
     "MCMF",
     "Hungarian",
     "Seg Tree",
@@ -56,66 +57,6 @@ with tab["Presentations"]:
     bo = BytesIO(open(path, 'rb').read())
     st.download_button(label='week 1 - greedy, dp & cp', data=bo.getvalue(), file_name='Intro_cpp.pdf', key='cpw11825647')
 
-if not SHOW_ALGORITHM_TABS:
-    st.stop()
-
-with tab["Dinic"]:
-    st.markdown("""
-    Description: Flow algorithm with complexity $O(V E \\log U)$ where $U = \\mathrm{max} |cap|$.  
-
-    Time Complexity: $O(\\mathrm{min}(E^{\\frac{1}{2}}, V^{\\frac{2}{3}})E)$   if $U = 1$.
-
-    $O(\\sqrt V E)$ for bipartite matching.""")
-
-
-    code = """
-    #define sz(yarin) ((int)(yarin).size())
-
-    struct Dinic {
-        struct Edge {
-            int to, rev;
-            ll c, oc;
-            ll flow() { return max(oc - c, 0LL); } // if you need flows
-        };
-        vi lvl, ptr, q;
-        vector<vector<Edge>> adj;
-        Dinic(int n) : lvl(n), ptr(n), q(n), adj(n) {}
-        void addEdge(int a, int b, ll c, ll rcap = 0) {
-            adj[a].push_back({b, sz(adj[b]), c, c});
-            adj[b].push_back({a, sz(adj[a]) - 1, rcap, rcap});
-        }
-        ll dfs(int v, int t, ll f) {
-            if (v == t || !f) return f;
-            for (int& i = ptr[v]; i < sz(adj[v]); i++) {
-                Edge& e = adj[v][i];
-                if (lvl[e.to] == lvl[v] + 1)
-                    if (ll p = dfs(e.to, t, min(f, e.c))) {
-                        e.c -= p, adj[e.to][e.rev].c += p;
-                        return p;
-                    }
-            }
-            return 0;
-        }
-        ll calc(int s, int t) {
-            ll flow = 0; q[0] = s;
-            rep(L,0,31) do { // ’ int L=30’ maybe faster for random data
-                    lvl = ptr = vi(sz(q));
-                    int qi = 0, qe = lvl[s] = 1;
-                    while (qi < qe && !lvl[t]) {
-                        int v = q[qi++];
-                        for (Edge e : adj[v])
-                            if (!lvl[e.to] && e.c >> (30 - L))
-                                q[qe++] = e.to, lvl[e.to] = lvl[v] + 1;
-                    }
-                    while (ll p = dfs(s, t, LLONG_MAX)) flow += p;
-                } while (lvl[t]);
-            return flow;
-        }
-        bool leftOfMinCut(int a) { return lvl[a] != 0; }
-    };
-
-    """
-    st.code(code, language='cpp', line_numbers=True)
 
 with tab["SCC"]:
     st.markdown('''
@@ -184,6 +125,103 @@ with tab["Union Find"]:
 
     """
     st.code(code, language='cpp', line_numbers=True)
+
+
+
+with tab["Dijkstra"]:
+
+    st.markdown('''
+    Description: Dijkstra.''')
+
+    code = """
+    void dijkstra(int n, vector<vector<pii>> &g, int s, vector<int> &dist) {
+    rep(i,0,n) dist[i] = -1; //start by setting the distances of every vertex to -1
+
+    //create a priority queue and start by inserting a route leading to s with a cost of 0
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    pq.push(pii(0, s));
+
+    //while the queue isn't empty look at the shortest route in the queue
+    while(!pq.empty()) {
+        pii p = pq.top(); pq.pop();
+
+        //check if the route is to a vertex we have not seen yet, AKA outside of A
+        if (dist[p.second] != -1) continue;
+
+        //set the distance of the new discovered vertex to the weight of the path
+        dist[p.second] = p.first;
+
+        //add the new paths from the new vertex to the queue
+        for(auto v : g[p.second])
+            pq.push({dist[p.second]+v.second, v.first});
+    }
+}
+
+    """
+    st.code(code, language='cpp', line_numbers=True)
+
+
+if not SHOW_ALGORITHM_TABS:
+    st.stop()
+
+with tab["Dinic"]:
+    st.markdown("""
+    Description: Flow algorithm with complexity $O(V E \\log U)$ where $U = \\mathrm{max} |cap|$.  
+
+    Time Complexity: $O(\\mathrm{min}(E^{\\frac{1}{2}}, V^{\\frac{2}{3}})E)$   if $U = 1$.
+
+    $O(\\sqrt V E)$ for bipartite matching.""")
+
+
+    code = """
+    #define sz(yarin) ((int)(yarin).size())
+
+    struct Dinic {
+        struct Edge {
+            int to, rev;
+            ll c, oc;
+            ll flow() { return max(oc - c, 0LL); } // if you need flows
+        };
+        vi lvl, ptr, q;
+        vector<vector<Edge>> adj;
+        Dinic(int n) : lvl(n), ptr(n), q(n), adj(n) {}
+        void addEdge(int a, int b, ll c, ll rcap = 0) {
+            adj[a].push_back({b, sz(adj[b]), c, c});
+            adj[b].push_back({a, sz(adj[a]) - 1, rcap, rcap});
+        }
+        ll dfs(int v, int t, ll f) {
+            if (v == t || !f) return f;
+            for (int& i = ptr[v]; i < sz(adj[v]); i++) {
+                Edge& e = adj[v][i];
+                if (lvl[e.to] == lvl[v] + 1)
+                    if (ll p = dfs(e.to, t, min(f, e.c))) {
+                        e.c -= p, adj[e.to][e.rev].c += p;
+                        return p;
+                    }
+            }
+            return 0;
+        }
+        ll calc(int s, int t) {
+            ll flow = 0; q[0] = s;
+            rep(L,0,31) do { // ’ int L=30’ maybe faster for random data
+                    lvl = ptr = vi(sz(q));
+                    int qi = 0, qe = lvl[s] = 1;
+                    while (qi < qe && !lvl[t]) {
+                        int v = q[qi++];
+                        for (Edge e : adj[v])
+                            if (!lvl[e.to] && e.c >> (30 - L))
+                                q[qe++] = e.to, lvl[e.to] = lvl[v] + 1;
+                    }
+                    while (ll p = dfs(s, t, LLONG_MAX)) flow += p;
+                } while (lvl[t]);
+            return flow;
+        }
+        bool leftOfMinCut(int a) { return lvl[a] != 0; }
+    };
+
+    """
+    st.code(code, language='cpp', line_numbers=True)
+
 
 with tab["MCMF"]:
     st.markdown('''
