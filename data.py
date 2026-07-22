@@ -41,6 +41,16 @@ week1hwl = [
     ['2167Gf', 'https://codeforces.com/contest/2167/problem/G', 'f'],
     ['2413s', 'https://cses.fi/problemset/task/2413', 's'],
 ]
+
+week2s = [0, 0, 0, 1, 0, 1, 1, 1, 2, 2]
+week2u = [
+    ['1263Df', 'https://codeforces.com/problemset/problem/1263/D', 'f'],
+    ['1682s', 'https://cses.fi/problemset/task/1682', 's'],
+    ['1683s', 'https://cses.fi/problemset/task/1683', 's'],
+]
+week2l = [
+
+]
 '''
 
 week1s = [0,0,0,0,0,0,0,1,1,1,2,2]
