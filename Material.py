@@ -112,7 +112,9 @@ with tab["SCC"]:
 with tab["Dijkstra"]:
 
     st.markdown('''
-    Description: Dijkstra.''')
+    Description: Given a weighted undirected graph and a source vertex s. The algo returns the shortest path distances from s to all other vertices in the graph.
+    \n Time: $O((|V| + |E|)*log|V|)$''')
+    st.markdown(''' Greedy approach ''')
 
     code = """
     void dijkstra(int n, vector<vector<pii>> &g, int s, vector<int> &dist) {
@@ -141,6 +143,39 @@ with tab["Dijkstra"]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
+    st.markdown(''' Edge relaxation: ''')
+    code = """
+    vector<int> dijkstra(vector<vector<pair<int,int>>>& adj, int s) {
+        int V = adj.size();
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        vector<int> dist(V, INT_MAX);
+        dist[s] = 0;
+        pq.push(0, s);
+        while (!pq.empty()) {
+            auto top = pq.top();
+            pq.pop();
+            int d = top.first;  
+            int u = top.second; 
+            // If this distance not the latest shortest one, skip it
+            if (d > dist[u])
+                continue;
+                
+            // Explore all neighbors of the current vertex
+            for (auto &p : adj[u]) {
+                int v = p.first; 
+                int w = p.second; 
+                // If we found a shorter path to v through u, update it
+                if (dist[u] + w < dist[v]) {
+                    dist[v] = dist[u] + w;   
+                    pq.push(dist[v], v);
+                }
+            }
+        }
+        return dist;
+    }
+
+        """
+    st.code(code, language='cpp', line_numbers=True)
 
 if not SHOW_ALGORITHM_TABS:
     st.stop()
