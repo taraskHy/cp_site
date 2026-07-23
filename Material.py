@@ -55,14 +55,15 @@ with tab["Presentations"]:
     st.write("week one presentations:")
     path = "2026_presentations/Week_1/CP_2026_lecture1.pdf"
     bo = BytesIO(open(path, 'rb').read())
-    st.download_button(label='week 1 - greedy, dp & cp', data=bo.getvalue(), file_name='CP_2026_lecture1', key='cpw11825647')
+    st.download_button(label='week 1 - greedy, dp & cp', data=bo.getvalue(), file_name='CP_2026_lecture1.pdf',
+                       mime='application/pdf', key='cpw11825647')
 
 
     st.write("week two presentations:")
     path = "2026_presentations/Week_2/CP_2026_lecture2.pdf"
     bo = BytesIO(open(path, 'rb').read())
-    st.download_button(label='week 2 - graphs, scc & uf', data=bo.getvalue(), file_name='CP_2026_lecture2',
-                       key='cpw11825648')
+    st.download_button(label='week 2 - graphs, scc & uf', data=bo.getvalue(), file_name='CP_2026_lecture2.pdf',
+                       mime='application/pdf', key='cpw11825648')
 
 
 with tab["SCC"]:

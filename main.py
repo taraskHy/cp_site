@@ -207,6 +207,13 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.header("Homework")
             new_off = week(week1hw, week1hwl, week1hws, tasks, new_off)
             st.write("---")
+
+        with st.container():
+            if not st.session_state.get('authentication_status'):
+                st.rerun()
+            st.header("Week two - Graphs")
+            new_off = week(week2u, week2l, week2s, tasks, new_off)
+            st.write("---")
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
         #         st.rerun()
