@@ -150,7 +150,7 @@ with tab["Dijkstra"]:
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
         vector<int> dist(V, INT_MAX);
         dist[s] = 0;
-        pq.push(0, s);
+        pq.push({0, s});
         while (!pq.empty()) {
             auto top = pq.top();
             pq.pop();
@@ -167,7 +167,7 @@ with tab["Dijkstra"]:
                 // If we found a shorter path to v through u, update it
                 if (dist[u] + w < dist[v]) {
                     dist[v] = dist[u] + w;   
-                    pq.push(dist[v], v);
+                    pq.push({dist[v], v});
                 }
             }
         }
