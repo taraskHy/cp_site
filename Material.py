@@ -24,14 +24,14 @@ SHOW_ALGORITHM_TABS = False
 public_tab_names = [
     "Presentations",
     "SCC",
-    "Dijkstra"
-
-]
-algorithm_tab_names = [
+    "Dijkstra",
     "Union Find",
     "Dinic",
     "MCMF",
-    "Hungarian",
+    "Hungarian"
+
+]
+algorithm_tab_names = [
     "Seg Tree",
     "Lazy Seg Tree",
     "Fenwick",
@@ -177,8 +177,6 @@ with tab["Dijkstra"]:
         """
     st.code(code, language='cpp', line_numbers=True)
 
-if not SHOW_ALGORITHM_TABS:
-    st.stop()
 
 with tab["Union Find"]:
 
@@ -388,6 +386,10 @@ with tab["Hungarian"]:
     }
     """
     st.code(code, language='cpp', line_numbers=True)
+
+if not SHOW_ALGORITHM_TABS:
+    st.stop()
+
 
 with tab["Sag Tree"]:
     st.markdown('''
