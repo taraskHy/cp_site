@@ -25,13 +25,13 @@ public_tab_names = [
     "Presentations",
     "SCC",
     "Dijkstra",
-    "Union Find",
     "Dinic",
     "MCMF",
     "Hungarian"
 
 ]
 algorithm_tab_names = [
+    "Union Find",
     "Seg Tree",
     "Lazy Seg Tree",
     "Fenwick",
@@ -176,35 +176,6 @@ with tab["Dijkstra"]:
 
         """
     st.code(code, language='cpp', line_numbers=True)
-
-
-with tab["Union Find"]:
-
-
-    st.markdown('''
-    Description: The regular Union Find from class.
-
-    Time: $O(\\alpha (n))$ for both operations. 
-
-    Run pre() before usage.''')
-
-    code = """
-
-    const int maxn =2e5+5;
-    int p[maxn], s[maxn];
-    void pre(){
-        rep(i, 0, maxn) p[i] = i, s[i] = 1;
-    }
-    int find(int a) { return a == p[a] ? a : p[a] = find(p[a]); }
-    int onion(int a, int b) {
-        if((a = find(a)) == (b = find(b))) return 0;
-        if(s[a] < s[b]) swap(a, b);
-        return s[a] += s[b], p[b] = a, 1;
-    }
-
-    """
-    st.code(code, language='cpp', line_numbers=True)
-
 
 
 with tab["Dinic"]:
@@ -574,5 +545,34 @@ with tab["Binary Lifting"]:
                 return u; 
           } 
     };
+    """
+    st.code(code, language='cpp', line_numbers=True)
+
+
+
+with tab["Union Find"]:
+
+
+    st.markdown('''
+    Description: The regular Union Find from class.
+
+    Time: $O(\\alpha (n))$ for both operations. 
+
+    Run pre() before usage.''')
+
+    code = """
+
+    const int maxn =2e5+5;
+    int p[maxn], s[maxn];
+    void pre(){
+        rep(i, 0, maxn) p[i] = i, s[i] = 1;
+    }
+    int find(int a) { return a == p[a] ? a : p[a] = find(p[a]); }
+    int onion(int a, int b) {
+        if((a = find(a)) == (b = find(b))) return 0;
+        if(s[a] < s[b]) swap(a, b);
+        return s[a] += s[b], p[b] = a, 1;
+    }
+
     """
     st.code(code, language='cpp', line_numbers=True)
