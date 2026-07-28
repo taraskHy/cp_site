@@ -65,6 +65,12 @@ with tab["Presentations"]:
     st.download_button(label='week 2 - graphs, scc & uf', data=bo.getvalue(), file_name='CP_2026_lecture2.pdf',
                        mime='application/pdf', key='cpw11825648')
 
+    st.write("week three presentations:")
+    path = "2026_presentations/Week_3/CP_2026_lecture3.pdf"
+    bo = BytesIO(open(path, 'rb').read())
+    st.download_button(label='week 3 - flow & matching', data=bo.getvalue(), file_name='CP_2026_lecture3.pdf',
+                       mime='application/pdf', key='cpw11825648')
+
 
 with tab["SCC"]:
     st.markdown('''
