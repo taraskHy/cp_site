@@ -185,4 +185,4 @@ total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
             '20C', '475B', '277A', '510C', '520B', '1167C', '427C', '938D',
             '216B'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
-black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer']
+black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer', 'markin2000']
