@@ -67,12 +67,12 @@ week3u = [
     ['1711s', 'https://cses.fi/problemset/task/1711', 's'],
     ['1695s', 'https://cses.fi/problemset/task/1695', 's'],
     ['2121s', 'https://cses.fi/problemset/task/2121', 's'],
-    ['1676s', 'https://cses.fi/problemset/task/1676', 's'],
+    ['1686s', 'https://cses.fi/problemset/task/1686', 's'],
+    ['2129s', 'https://cses.fi/problemset/task/2129', 's'],
+    ['2130s', 'https://cses.fi/problemset/task/2130', 's']
 ]
 week3l = [
-    ['1683s', 'https://cses.fi/problemset/task/1683', 's'],
-    ['1711s', 'https://cses.fi/problemset/task/1711', 's'],
-    ['1704s', 'https://cses.fi/problemset/task/1704', 's'],
+
 
 ]
 '''
