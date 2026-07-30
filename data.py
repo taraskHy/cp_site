@@ -60,7 +60,7 @@ week2l = [
     ['938Df', 'https://codeforces.com/problemset/problem/938/D', 'f'],
 ]
 
-week3s = [0, 0, 1, 1, 1, 1, 2, 2, 4, 5]
+week3s = [0, 0, 1, 1, 1, 1, 2, 2, 4]
 week3u = [
     ['1694s', 'https://cses.fi/problemset/task/1694', 's'],
     ['1696s', 'https://cses.fi/problemset/task/1696', 's'],
@@ -74,7 +74,6 @@ week3u = [
 ]
 week3l = [
     ['653Df', 'https://codeforces.com/problemset/problem/653/D', 'f'],
-    ['78Ef', 'https://codeforces.com/problemset/problem/78/E', 'f'],
 
 ]
 '''
@@ -185,6 +184,6 @@ total_prob = week0u + week0l + week1u + week1l + week1hw + week1hwl + week2u + w
 total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
             '443A', '996A', '160A', '34B', '1353B', '4C', '1263D',
             '20C', '475B', '277A', '510C', '520B', '1167C', '427C', '938D',
-            '216B'] #list of Codeforces problem IDs
+            '216B', '653Df'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer', 'markin2000']
