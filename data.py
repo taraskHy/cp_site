@@ -60,16 +60,19 @@ week2l = [
     ['938Df', 'https://codeforces.com/problemset/problem/938/D', 'f'],
 ]
 
-week3s = [0, 0, 1, 1, 2, 2]
+week3s = [0, 0, 1, 1, 2, 2, 1, 1, 1]
 week3u = [
     ['1694s', 'https://cses.fi/problemset/task/1694', 's'],
     ['1696s', 'https://cses.fi/problemset/task/1696', 's'],
     ['1711s', 'https://cses.fi/problemset/task/1711', 's'],
     ['1695s', 'https://cses.fi/problemset/task/1695', 's'],
     ['2121s', 'https://cses.fi/problemset/task/2121', 's'],
-    ['216Bf', 'https://codeforces.com/problemset/problem/216/B', 'f'],
+    ['1676s', 'https://cses.fi/problemset/task/1676', 's'],
 ]
 week3l = [
+    ['1683s', 'https://cses.fi/problemset/task/1683', 's'],
+    ['1711s', 'https://cses.fi/problemset/task/1711', 's'],
+    ['1704s', 'https://cses.fi/problemset/task/1704', 's'],
 
 ]
 '''
