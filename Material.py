@@ -72,9 +72,14 @@ with tab["Presentations"]:
                        mime='application/pdf', key='cpw11825649')
     st.write("week four presentations:")
     path = "2026_presentations/Week_4/CP_2026_lecture4.pdf"
-    st.download_button(label='week 4 - segment trees and decomposition', data=bo.getvalue(), file_name='CP_2026_lecture4.pdf',
-                       mime='application/pdf', key='cpw11825652')
-
+    with open(path, "rb") as pdf_file:
+        st.download_button(
+            label="Week 4 - Segment Trees and Decomposition",
+            data=pdf_file.read(),
+            file_name="CP_2026_lecture4.pdf",
+            mime="application/pdf",
+            key="cpw11825655"
+        )
 
 
 with tab["SCC"]:
