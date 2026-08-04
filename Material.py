@@ -70,6 +70,11 @@ with tab["Presentations"]:
     bo = BytesIO(open(path, 'rb').read())
     st.download_button(label='week 3 - flow & matching', data=bo.getvalue(), file_name='CP_2026_lecture3.pdf',
                        mime='application/pdf', key='cpw11825649')
+    st.write("week four presentations:")
+    path = "2026_presentations/Week_4/CP_2026_lecture4.pdf"
+    st.download_button(label='week 4 - segment trees and decomposition', data=bo.getvalue(), file_name='CP_2026_lecture3.pdf',
+                       mime='application/pdf', key='cpw11825652')
+
 
 
 with tab["SCC"]:
