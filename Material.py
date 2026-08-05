@@ -28,11 +28,10 @@ public_tab_names = [
     "Dinic",
     "MCMF",
     "Hungarian",
-    "Union Find",
     "Seg Tree",
     "Lazy Seg Tree",
-    "Fenwick"
-
+    "Fenwick",
+    "Union Find"
 ]
 algorithm_tab_names = [
     "Binary Lifting"
@@ -375,7 +374,7 @@ with tab["Hungarian"]:
     st.code(code, language='cpp', line_numbers=True)
 
 
-with tab["Sag Tree"]:
+with tab["Seg Tree"]:
     st.markdown('''
     This is the implementation of Segment Tree, using arrays.
 
