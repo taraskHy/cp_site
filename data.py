@@ -77,20 +77,20 @@ week3l = [
 
 ]
 
-week4s = [0, 1, 2, 2, 3, 3, 2, 1, 2, 1, 3]
+week4s = [0, 0, 0, 1, 1, 1, 2, 1, 1, 2, 3]
 week4u = [
     ['1648s', 'https://cses.fi/problemset/task/1648', 's'],
     ['1735s', 'https://cses.fi/problemset/task/1735', 's'],
     ['1749s', 'https://cses.fi/problemset/task/1749', 's'],
     ['339Df', 'https://codeforces.com/problemset/problem/339/D', 'f'],
     ['52Cf', 'https://codeforces.com/problemset/problem/52/C', 'f'],
-    ['380Cf', 'https://codeforces.com/problemset/problem/380/C', 'f'],
     ['1234Df', 'https://codeforces.com/problemset/problem/1234/D', 'f'],
+    ['380Cf', 'https://codeforces.com/problemset/problem/380/C', 'f']
 ]
 week4l = [
     ['2131s', 'https://cses.fi/problemset/task/2131', 's'],  # locked/bonus - 1 star
-    ['1143s', 'https://cses.fi/problemset/task/1143', 's'],  # locked/bonus - 2 stars
     ['2166s', 'https://cses.fi/problemset/task/2166', 's'],  # locked/bonus - 1 star
+    ['1143s', 'https://cses.fi/problemset/task/1143', 's'],  # locked/bonus - 2 stars
     ['2206s', 'https://cses.fi/problemset/task/2206', 's'],  # locked/bonus - 3 stars
 ]
 '''
