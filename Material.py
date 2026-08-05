@@ -27,14 +27,14 @@ public_tab_names = [
     "Dijkstra",
     "Dinic",
     "MCMF",
-    "Hungarian"
-
-]
-algorithm_tab_names = [
+    "Hungarian",
     "Union Find",
     "Seg Tree",
     "Lazy Seg Tree",
-    "Fenwick",
+    "Fenwick"
+
+]
+algorithm_tab_names = [
     "Binary Lifting"
 ]
 
@@ -374,9 +374,6 @@ with tab["Hungarian"]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
-if not SHOW_ALGORITHM_TABS:
-    st.stop()
-
 
 with tab["Sag Tree"]:
     st.markdown('''
@@ -528,6 +525,37 @@ with tab["Fenwick"]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
+with tab["Union Find"]:
+
+
+    st.markdown('''
+    Description: The regular Union Find from class.
+
+    Time: $O(\\alpha (n))$ for both operations. 
+
+    Run pre() before usage.''')
+
+    code = """
+
+    const int maxn =2e5+5;
+    int p[maxn], s[maxn];
+    void pre(){
+        rep(i, 0, maxn) p[i] = i, s[i] = 1;
+    }
+    int find(int a) { return a == p[a] ? a : p[a] = find(p[a]); }
+    int onion(int a, int b) {
+        if((a = find(a)) == (b = find(b))) return 0;
+        if(s[a] < s[b]) swap(a, b);
+        return s[a] += s[b], p[b] = a, 1;
+    }
+
+    """
+    st.code(code, language='cpp', line_numbers=True)
+
+
+if not SHOW_ALGORITHM_TABS:
+    st.stop()
+
 with tab["Binary Lifting"]:
     st.markdown('''
     Description: Calculate jumps up a tree, to support fast upward jumps and LCAs.
@@ -566,29 +594,3 @@ with tab["Binary Lifting"]:
 
 
 
-with tab["Union Find"]:
-
-
-    st.markdown('''
-    Description: The regular Union Find from class.
-
-    Time: $O(\\alpha (n))$ for both operations. 
-
-    Run pre() before usage.''')
-
-    code = """
-
-    const int maxn =2e5+5;
-    int p[maxn], s[maxn];
-    void pre(){
-        rep(i, 0, maxn) p[i] = i, s[i] = 1;
-    }
-    int find(int a) { return a == p[a] ? a : p[a] = find(p[a]); }
-    int onion(int a, int b) {
-        if((a = find(a)) == (b = find(b))) return 0;
-        if(s[a] < s[b]) swap(a, b);
-        return s[a] += s[b], p[b] = a, 1;
-    }
-
-    """
-    st.code(code, language='cpp', line_numbers=True)

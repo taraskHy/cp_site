@@ -76,6 +76,23 @@ week3l = [
     ['653Df', 'https://codeforces.com/problemset/problem/653/D', 'f'],
 
 ]
+
+week4s = [0, 1, 2, 2, 3, 3, 2, 1, 2, 1, 3]
+week4u = [
+    ['1648s', 'https://cses.fi/problemset/task/1648', 's'],
+    ['1735s', 'https://cses.fi/problemset/task/1735', 's'],
+    ['1749s', 'https://cses.fi/problemset/task/1749', 's'],
+    ['339Df', 'https://codeforces.com/problemset/problem/339/D', 'f'],
+    ['52Cf', 'https://codeforces.com/problemset/problem/52/C', 'f'],
+    ['380Cf', 'https://codeforces.com/problemset/problem/380/C', 'f'],
+    ['1234Df', 'https://codeforces.com/problemset/problem/1234/D', 'f'],
+]
+week4l = [
+    ['2131s', 'https://cses.fi/problemset/task/2131', 's'],  # locked/bonus - 1 star
+    ['1143s', 'https://cses.fi/problemset/task/1143', 's'],  # locked/bonus - 2 stars
+    ['2166s', 'https://cses.fi/problemset/task/2166', 's'],  # locked/bonus - 1 star
+    ['2206s', 'https://cses.fi/problemset/task/2206', 's'],  # locked/bonus - 3 stars
+]
 '''
 
 week1s = [0,0,0,0,0,0,0,1,1,1,2,2]
@@ -179,11 +196,12 @@ stars = week1s + week2s + week3s + week4s + week5s
 total_cf = ['4A','103081E','545C','1472C','2167C','2094D','698A','2167G'] #list of Codeforces problem IDs
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
 '''
-stars = week0s + week1s + week1hws + week2s + week3s
-total_prob = week0u + week0l + week1u + week1l + week1hw + week1hwl + week2u + week2l + week3u + week3l
+stars = week0s + week1s + week1hws + week2s + week3s + week4s
+total_prob = (week0u + week0l + week1u + week1l + week1hw + week1hwl + week2u + week2l
+              + week3u + week3l + week4u + week4l)
 total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
             '443A', '996A', '160A', '34B', '1353B', '4C', '1263D',
             '20C', '475B', '277A', '510C', '520B', '1167C', '427C', '938D',
-            '216B', '653Df'] #list of Codeforces problem IDs
+            '653D', '339D', '52C', '380C', '1234D'] #list of Codeforces problem IDs
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer', 'markin2000']

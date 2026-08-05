@@ -241,6 +241,13 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.header("Week three - Flows & Matching")
             new_off = week(week3u, week3l, week3s, tasks, new_off)
             st.write("---")
+
+        with st.container():
+            if not st.session_state.get('authentication_status'):
+                st.rerun()
+            st.header("Week four - Segment Trees & Range Queries")
+            new_off = week(week4u, week4l, week4s, tasks, new_off)
+            st.write("---")
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
         #         st.rerun()
