@@ -80,6 +80,17 @@ with tab["Presentations"]:
             key="cpw11825655"
         )
 
+    st.write("week five presentations:")
+    path = "2026_presentations/Week_5/CP_2026_lecture5.pdf"
+    with open(path, "rb") as pdf_file:
+        st.download_button(
+            label="Week 5 - Trees, Euler tour and Binary lifting",
+            data=pdf_file.read(),
+            file_name="CP_2026_lecture5.pdf",
+            mime="application/pdf",
+            key="cpw11825656"
+        )
+
 
 with tab["SCC"]:
     st.markdown('''
