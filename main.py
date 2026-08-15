@@ -267,6 +267,25 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.header("Week four - Segment Trees & Range Queries")
             new_off = week(week4u, week4l, week4s, tasks, new_off)
             st.write("---")
+            st.markdown(
+                """
+                <div style="
+                    color: red;
+                    font-size: 2rem;
+                    font-weight: 600;
+                    line-height: 1.2;
+                    margin: 0.25rem 0 1rem 0;
+                ">
+                    Week Two - Homework Solution:
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+            path = "S/Solutions/Week_4/main.cpp"
+            bo = BytesIO(open(path, 'rb').read())
+            st.download_button(label='week 4 - Homework + Contest Solution', data=bo.getvalue(), file_name='main.cpp',
+                               mime='text/x-c++src', key='cpw11825656')
+            st.write("---")
 
         with st.container():
             if not st.session_state.get('authentication_status'):
