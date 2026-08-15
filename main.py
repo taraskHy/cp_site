@@ -276,7 +276,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
                     line-height: 1.2;
                     margin: 0.25rem 0 1rem 0;
                 ">
-                    Week Two - Homework Solution:
+                    Week four - Homework + Contest Solution:
                 </div>
                 """,
                 unsafe_allow_html=True
