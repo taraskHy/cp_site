@@ -627,6 +627,158 @@ struct segment_tree_arr4{
             get<2>(left) + get<2>(right) - min(get<1>(left), get<2>(right))};
     }
 };
+struct segment_tree_prefix{
+    int n;
+    vi sum,pre;
+    segment_tree_prefix(int n): sum(4*n,0),pre(4*n,0),n(n){
+        build(1,1,n);
+    }
+
+    void build(int node,int l,int r){
+        if(l==r) {
+            sum[node] = a[l-1];
+            pre[node] = max(0LL,a[l-1]);
+            return;
+        }
+        int m = (l+r)/2;
+        build(2*node,l,m),build(2*node+1,m+1,r);
+        pullup(node);
+    }
+
+    inline void pullup(int node){
+        sum[node] = sum[2*node]+sum[2*node+1];
+        pre[node] = max(pre[2*node],sum[2*node]+pre[2*node+1]);
+    }
+
+    inline void update(int i,int k){ _update(1,i,k,1,n); }
+    void _update(int node,int i,int k,int l,int r){
+        if(l==r) {
+            sum[node] = k;
+            pre[node] = max(0LL,k);
+            return;
+        }
+        int m = (l+r)/2;
+        (m<i) ? _update(2*node+1,i,k,m+1,r) : _update(2*node,i,k,l,m);
+        pullup(node);
+    }
+
+    inline int query(int l,int r){
+        return get<1>(_query(1,l,r,1,n));
+    }
+    pii _query(int node,int ql,int qr,int l,int r){
+        if(r<ql||qr<l) return {0,0};
+        if(ql<=l&&r<=qr)
+            return {sum[node],pre[node]};
+        int m = (l+r)/2;
+        auto left = _query(2*node,ql,qr,l,m);
+        auto right = _query(2*node+1,ql,qr,m+1,r);
+        int total = left.first+right.first;
+        int prefix = max(left.second,left.first+right.second);
+        return {total,prefix};
+    }
+};
+struct segment_tree_arr_pizza{
+    int n;
+    vi value;
+    segment_tree_arr_pizza(int n, vi &arr): value(4*n, 0), n(n){
+        build(1, 1, n, arr);
+    }
+
+    void build(int node, int l, int r, vi &arr){
+        if(l == r) {
+            value[node] = arr[l];
+            return;
+        }
+        int m = (l+r) / 2;
+        build(2*node, l, m,arr), build(2*node + 1, m+1, r,arr);
+        value[node] = min(value[2*node],value[2*node + 1]);
+    }
+
+    inline void update(int i, int k) { _update(1, i, k, 1, n); }
+    void _update(int node, int i, int k, int l, int r){
+        if(l == r) {
+            value[node] = k;
+            return;
+        }
+        int m = (l+r)/2;
+        (m < i) ? _update(2*node + 1, i, k, m+1, r) : _update(2*node, i, k, l, m);
+        value[node] = min(value[2*node],value[2*node + 1]);
+        return;
+    }
+    inline int query(int l, int r) { return _query(1, l, r, 1, n); }
+    int _query(int node, int ql, int qr, int l, int r){
+        if(r < ql || qr < l) return LONG_LONG_MAX;
+        if(ql <= l && r <= qr) return value[node];
+        int m = (l+r) / 2;
+        return min(_query(2*node, ql, qr, l, m), _query(2*node+1, ql, qr, m+1, r));
+    }
+};
+struct segment_tree_arr_hotel{
+    int n;
+    vi value;
+    segment_tree_arr_hotel(int n, vi val): value(4*n, 0), n(n){
+        build(1, 1, n, val);
+    }
+
+    void build(int node, int l, int r, vi& val){
+        if(l == r){ value[node] = val[l]; return; }
+        int m = (l+r) / 2;
+        build(2*node, l, m, val);
+        build(2*node + 1, m+1, r, val);
+        value[node] = max(value[2*node], value[2*node + 1]);
+    }
+
+    inline void update(int i, int k) { _update(1, i, k, 1, n); }
+    void _update(int node, int i, int k, int l, int r){
+        if(l == r){ value[node] += k; return; }
+        int m = (l+r)/2;
+        if(i <= m) _update(2*node, i, k, l, m);
+        else _update(2*node + 1, i, k, m+1, r);
+        value[node] = max(value[2*node], value[2*node + 1]);
+    }
+
+    inline int query(int l, int r, int *index) { return _query(1, l, r, 1, n, index); }
+    int _query(int node, int ql, int qr, int l, int r, int *index) {
+        if (qr < l || r < ql) {
+            if (index) *index = -1;
+            return LLONG_MIN;
+        }
+        if (ql <= l && r <= qr) {
+            if (index) {
+                int cur = node, L = l, R = r, target = value[node];
+                while (L != R) {
+                    int m = (L + R) / 2;
+                    if (value[cur*2] == target) {
+                        cur = cur*2;   R = m;
+                    }
+                    else {
+                        cur = cur*2+1; L = m+1;
+                    }
+                }
+                *index = L;
+            }
+            return value[node];
+        }
+        int m = (l+r) / 2;
+        int li = -1, ri = -1;
+        int lv = _query(2*node,ql,qr,l,m, index ? &li : nullptr);
+        int rv = _query(2*node + 1, ql, qr, m+1, r, index ? &ri : nullptr);
+
+        if (lv > rv) {
+            if (index) *index = li; return lv;
+        }
+        if (rv > lv) {
+            if (index) *index = ri; return rv;
+        }
+        if (index) {
+            if (li != -1 && ri != -1) *index = min(li, ri);
+            else *index = (li != -1 ? li : ri);
+        }
+        return lv;
+    }
+};
+
+
 
 template<class T> struct Fenwick {
     vector<T> s;
@@ -869,6 +1021,89 @@ void Sereja_and_Brackets() {
         int l,r;
         cin>>l>>r;
         cout<<seg.query(l,r)<<'\n';
+    }
+
+}
+void Prefix_Sum_Queries() {
+    int n,q;
+    cin>>n>>q;
+    a.resize(n);
+    rep(i,0,n) cin>>a[i];
+    segment_tree_prefix seg(n);
+    for(int i=0;i<q;i++) {
+        int type;
+        cin>>type;
+        if(type==1) {
+            int k,u;
+            cin>>k>>u;
+            seg.update(k,u);
+        }
+        else {
+            int l,r;
+            cin>>l>>r;
+            cout<<seg.query(l,r)<<'\n';
+        }
+    }
+}
+void Hotel_Queries() {
+    int n,m;
+    cin>>n>>m;
+    vi arr(n+1);
+    rep(i,1,n+1) cin>>arr[i];
+    segment_tree_arr_hotel tree(n, arr);
+    rep(i,0,m) {
+        int r,index;
+        cin>>r;
+        if (tree.query(1, n, &index)<r) {
+            cout<<0<<' ';
+        }
+        else {
+            int lo = 1, hi = n, pref = n;
+            while (lo <= hi) {
+                int mid = (lo + hi) / 2;
+                if (tree.query(1, mid, nullptr) >= r) {
+                    pref = mid;
+                    hi = mid - 1;
+                } else lo = mid + 1;
+            }
+            index = -1;
+            tree.query(1, pref, &index);
+            tree.update(index, -r);
+            arr[index]-=r;
+            cout<<index<<' ';
+        }
+    }
+}
+void Pizzeria_Queries(){
+    int n,q;
+    cin>>n>>q;
+    vi pos(n+1);
+    vi neg(n+1);
+    for (int i = 1; i <= n; ++i) {
+        cin >> pos[i];
+        neg[i] = pos[i];
+        pos[i] += i;
+        neg[i] -= i;
+    }
+    segment_tree_arr_pizza pos_tree(n, pos);
+    segment_tree_arr_pizza neg_tree(n, neg);
+    for (int i = 0; i < q; ++i) {
+        int f;
+        cin >> f;
+        if (f == 1) {
+            int k,x;
+            cin >> k >> x;
+            pos[k] = x+k;
+            neg[k] = x-k;
+            pos_tree.update(k,pos[k]);
+            neg_tree.update(k,neg[k]);
+        }
+        if (f == 2) {
+            int k;
+            cin >> k;
+            int minprice = min(pos_tree.query(k+1,n)-k,neg_tree.query(1,k)+k);
+            cout << minprice << endl;
+        }
     }
 
 }
@@ -1136,16 +1371,13 @@ void Ethan_and_the_Extremely_Serious_Seating_Ritual() {
 
 
 
-
-
-
 signed main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int t = 1;
     //cin >> t;
     while (t--) {
-        //the problem:
+        Prefix_Sum_Queries();
     }
     return 0;
 }
