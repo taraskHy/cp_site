@@ -32,7 +32,8 @@ public_tab_names = [
     "Seg Tree",
     "Lazy Seg Tree",
     "Fenwick",
-    "Binary Lifting"
+    "Binary Lifting",
+    "Mo's Algorithm"
 ]
 algorithm_tab_names = [
 ]
@@ -568,6 +569,8 @@ with tab["Binary Lifting"]:
     Description: Calculate jumps up a tree, to support fast upward jumps and LCAs.
 
     Assumes the root node points to itself.
+    
+    kth(u, k): Returns the node that is k edges above u. If k is larger than the depth of u, returns -1.
 
     Time: construction $O(N)$, queries $O(\\log N)$''')
 
@@ -599,5 +602,69 @@ with tab["Binary Lifting"]:
     """
     st.code(code, language='cpp', line_numbers=True)
 
+with tab["Mo's Algorithm"]:
+    st.markdown('''
+    Description: Answer offline range queries by sorting them so that the current
+    range changes only a small amount between consecutive queries.
 
+    Maintain a current range $[l,r]$ and update the answer when elements are
+    added to or removed from the range.
 
+    Time: $O((N+Q)\\sqrt{N})$
+    ''')
+
+    code = """
+    struct Query {
+        int l, r, id;
+    };
+
+    int block_size;
+    
+    vector<int> mos_algorithm(vi& a, vector<Query>& queries) {
+        int n = a.size();
+        int q = queries.size();
+        block_size = sqrt(n) + 1;
+        sort(all(queries), [&](Query x, Query y) {
+            int block_x = x.l / block_size;
+            int block_y = y.l / block_size;
+
+            if (block_x != block_y)
+                return block_x < block_y;
+
+            if (block_x % 2 == 0)
+                return x.r < y.r;
+
+            return x.r > y.r;
+        });
+        vi ans(q);
+        int l = 0, r = -1;
+        int cur = 0;
+        auto add = [&](int i) {
+            int x = a[i];
+            // add a[i] to the current answer
+        };
+        auto remove = [&](int i) {
+            int x = a[i];
+            // remove a[i] from the current answer
+        };
+        for (auto query : queries) {
+            int ql = query.l;
+            int qr = query.r;
+            while (l > ql)
+                add(--l);
+
+            while (r < qr)
+                add(++r);
+
+            while (l < ql)
+                remove(l++);
+
+            while (r > qr)
+                remove(r--);
+                
+            ans[query.id] = cur;
+        }
+    }
+    """
+
+    st.code(code, language='cpp', line_numbers=True)
