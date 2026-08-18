@@ -92,6 +92,17 @@ with tab["Presentations"]:
             key="cpw11825656"
         )
 
+    st.write("week six presentations:")
+    path = "2026_presentations/Week_6/CP_2026_lecture6.pdf"
+    with open(path, "rb") as pdf_file:
+        st.download_button(
+            label="Week 6 - Math",
+            data=pdf_file.read(),
+            file_name="CP_2026_lecture6.pdf",
+            mime="application/pdf",
+            key="cpw11825657"
+        )
+
 
 with tab["SCC"]:
     st.markdown('''
