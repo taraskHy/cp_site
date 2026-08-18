@@ -664,6 +664,7 @@ with tab["Mo's Algorithm"]:
                 
             ans[query.id] = cur;
         }
+        return ans;
     }
     """
 
