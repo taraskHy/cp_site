@@ -107,6 +107,20 @@ week5u = [
 week5l = [
 
 ]
+
+week6s = [0, 1, 1, 2, 2, 3, 3, 3]
+week6u = [
+    ['1095s', 'https://cses.fi/problemset/task/1095', 's'],
+    ['1712s', 'https://cses.fi/problemset/task/1712', 's'],
+    ['2064s', 'https://cses.fi/problemset/task/2064', 's'],
+    ['959Ff', 'https://codeforces.com/problemset/problem/959/F', 'f'],
+    ['105974Bf', 'https://codeforces.com/gym/105974/problem/B', 'f'],
+    ['2187s', 'https://cses.fi/problemset/task/2187', 's'],
+]
+week6l = [
+    ['845Gf', 'https://codeforces.com/problemset/problem/845/G', 'f'],
+    ['105974Ef', 'https://codeforces.com/gym/105974/problem/E', 'f'],
+]
 '''
 
 week1s = [0,0,0,0,0,0,0,1,1,1,2,2]
@@ -210,14 +224,14 @@ stars = week1s + week2s + week3s + week4s + week5s
 total_cf = ['4A','103081E','545C','1472C','2167C','2094D','698A','2167G'] #list of Codeforces problem IDs
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
 '''
-stars = week0s + week1s + week1hws + week2s + week3s + week4s + week5s
+stars = week0s + week1s + week1hws + week2s + week3s + week4s + week5s + week6s
 total_prob = (week0u + week0l + week1u + week1l + week1hw + week1hwl + week2u + week2l
-              + week3u + week3l + week4u + week4l + week5u + week5l)
+              + week3u + week3l + week4u + week4l + week5u + week5l + week6u + week6l)
 total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
             '443A', '996A', '160A', '34B', '1353B', '4C', '1263D',
             '20C', '475B', '277A', '510C', '520B', '1167C', '427C', '938D',
             '653D', '339D', '52C', '380C', '1234D', '1006E', '1328E',
-            '220B', '617E', '86D'] #list of Codeforces problem IDs
+            '220B', '617E', '86D', '959F', '105974B', '845G', '105974E'] #list of Codeforces problem IDs
 # Codeforces group contests shown on the Contest Leaderboard page.
 # 'ids': contests merged into one leaderboard (same material, different people).
 # 'order': problem letters from easiest to hardest (None = already sorted A, B, C, ...).
