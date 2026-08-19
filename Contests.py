@@ -62,7 +62,16 @@ def merge_contests(contest_ids):
     return problems or [], rows
 
 
-def build_table(problems, rows, order, handle_to_user):
+def rank_key(record):
+    """Sort key: most solved first, then the toughest problems solved, then lowest penalty.
+    'Toughness' of a solved problem is (difficulty rank inside its contest, contest number):
+    the hardest problem of a contest beats an easier one from any contest, and between
+    equally-ranked problems the one from a later contest is harder (later contests are
+    harder overall). Lists are compared from the hardest solve down."""
+    return (-record['Solved'], [(-r, -c) for r, c in record['_toughness']], record['Penalty'])
+
+
+def build_table(problems, rows, order, handle_to_user, contest_number=0):
     """Turn Codeforces standings rows into a display table.
     Only official contestants are shown; problems are ordered easiest -> hardest."""
     if order:
@@ -70,6 +79,8 @@ def build_table(problems, rows, order, handle_to_user):
         columns = [c for c in order if c in problems] + [p for p in problems if p not in order]
     else:
         columns = list(problems)
+    # toughness of each problem: (rank inside the contest, 1 = easiest ... n = hardest; contest number)
+    difficulty = {problem: (i + 1, contest_number) for i, problem in enumerate(columns)}
 
     records = []
     for row in rows:
@@ -81,41 +92,48 @@ def build_table(problems, rows, order, handle_to_user):
             'Name': name,
             'Solved': row['points'] if isinstance(row['points'], int) else int(row['points']),
             'Penalty': row['penalty'],
+            '_toughness': [],
         }
         for problem, result in zip(problems, row['problemResults']):
             if result['points'] > 0:
                 tries = result['rejectedAttemptCount']
                 record[problem] = '✅' if tries == 0 else f'✅ (-{tries})'
+                record['_toughness'].append(difficulty[problem])
             elif result['rejectedAttemptCount'] > 0:
                 record[problem] = f"❌ ({result['rejectedAttemptCount']})"
             else:
                 record[problem] = ''
+        record['_toughness'].sort(reverse=True)  # hardest solved first
         records.append(record)
 
     # merged contests need to be re-ranked together
-    records.sort(key=lambda r: (-r['Solved'], r['Penalty']))
+    records.sort(key=rank_key)
     for rank, record in enumerate(records, start=1):
         record['Rank'] = rank
 
     if not records:
         return pd.DataFrame(columns=['Rank', 'Name', 'Solved', 'Penalty'] + columns)
-    return pd.DataFrame.from_records(records)[['Rank', 'Name', 'Solved', 'Penalty'] + columns]
+    return pd.DataFrame.from_records(records)[['Rank', 'Name', 'Solved', 'Penalty', '_toughness'] + columns]
 
 
 def build_overall_table(per_contest_tables, contest_names):
-    """Combine every contest into one ranking: total solved, total penalty
-    (ICPC style - more solved wins, ties broken by lower penalty).
-    Penalty only accumulates from contests the person took part in."""
+    """Combine every contest into one ranking: total solved, then toughest problems
+    solved across all contests (rank inside the contest first, later contests count as
+    harder), then total penalty. Penalty only accumulates from contests attended."""
     totals = {}
     for name, table in zip(contest_names, per_contest_tables):
         for _, row in table.iterrows():
-            entry = totals.setdefault(row['Name'], {'Name': row['Name'], 'Solved': 0, 'Penalty': 0, 'Contests': 0})
+            entry = totals.setdefault(row['Name'], {'Name': row['Name'], 'Solved': 0, 'Penalty': 0,
+                                                    'Contests': 0, '_toughness': []})
             entry['Solved'] += int(row['Solved'])
             entry['Penalty'] += int(row['Penalty'])
             entry['Contests'] += 1
+            entry['_toughness'] += list(row['_toughness'])
             entry[name] = f"{int(row['Solved'])} ({int(row['Penalty'])})"
 
-    records = sorted(totals.values(), key=lambda r: (-r['Solved'], r['Penalty']))
+    for entry in totals.values():
+        entry['_toughness'].sort(reverse=True)
+    records = sorted(totals.values(), key=rank_key)
     for rank, record in enumerate(records, start=1):
         record['Rank'] = rank
         for name in contest_names:
@@ -147,18 +165,19 @@ overall_tab, contest_tabs = tabs[0], tabs[1:]
 
 per_contest_tables = []
 per_contest_names = []
-for tab, contest in zip(contest_tabs, data.contests):
+for number, (tab, contest) in enumerate(zip(contest_tabs, data.contests), start=1):
     with tab:
         problems, rows = merge_contests(contest['ids'])
         if not problems:
             st.warning('Standings are unavailable for this contest right now.')
             continue
 
-        table = build_table(problems, rows, contest.get('order'), handle_to_user)
+        table = build_table(problems, rows, contest.get('order'), handle_to_user, contest_number=number)
         per_contest_tables.append(table)
         per_contest_names.append(contest['name'])
-        st.caption(f"{len(table)} participants  ·  ✅ solved (-n = wrong tries before solving)  ·  ❌ (n) = n wrong tries, unsolved")
-        st.dataframe(table, hide_index=True, use_container_width=True)
+        st.caption(f"{len(table)} participants  ·  ranked by solved, then hardest problems solved, then penalty  ·  "
+                   "✅ solved (-n = wrong tries before solving)  ·  ❌ (n) = n wrong tries, unsolved")
+        st.dataframe(table.drop(columns=['_toughness']), hide_index=True, use_container_width=True)
 
         links = ' · '.join(
             f"[contest {i + 1}](https://codeforces.com/group/tFKJNXEFZv/contest/{cid})" if len(contest['ids']) > 1
@@ -172,6 +191,7 @@ with overall_tab:
         st.warning('Standings are unavailable right now.')
     else:
         overall = build_overall_table(per_contest_tables, per_contest_names)
-        st.caption(f"{len(overall)} participants  ·  ranked by total solved, ties broken by total penalty  ·  "
+        st.caption(f"{len(overall)} participants  ·  ranked by total solved, then hardest problems solved "
+                   "(by position in the contest; later contests count as harder), then total penalty  ·  "
                    "per-contest cells show solved (penalty), — = did not participate")
         st.dataframe(overall, hide_index=True, use_container_width=True)
