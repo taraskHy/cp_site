@@ -310,6 +310,25 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.header("Week five")
             new_off = week(week5u, week5l, week5s, tasks, new_off)
             st.write("---")
+            st.markdown(
+                """
+                <div style="
+                    color: red;
+                    font-size: 2rem;
+                    font-weight: 600;
+                    line-height: 1.2;
+                    margin: 0.25rem 0 1rem 0;
+                ">
+                    Week 5 - Homework + Contest Solution:
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+            path = "S/Solutions/Week_5/main.cpp"
+            bo = BytesIO(open(path, 'rb').read())
+            st.download_button(label='week 5 - Homework + Contest Solution', data=bo.getvalue(), file_name='main.cpp',
+                               mime='text/x-c++src', key='cpw11825666')
+            st.write("---")
 
         with st.container():
             if not st.session_state.get('authentication_status'):
