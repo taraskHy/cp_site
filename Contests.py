@@ -179,6 +179,11 @@ for number, (tab, contest) in enumerate(zip(contest_tabs, data.contests), start=
                    "✅ solved (-n = wrong tries before solving)  ·  ❌ (n) = n wrong tries, unsolved")
         st.dataframe(table.drop(columns=['_toughness']), hide_index=True, use_container_width=True)
 
+        problem_columns = [c for c in table.columns if c not in ('Rank', 'Name', 'Solved', 'Penalty', '_toughness')]
+        base = f"https://codeforces.com/group/tFKJNXEFZv/contest/{contest['ids'][0]}"
+        st.markdown('Problems (easiest → hardest): '
+                    + ' · '.join(f"[{p}]({base}/problem/{p})" for p in problem_columns))
+
         links = ' · '.join(
             f"[contest {i + 1}](https://codeforces.com/group/tFKJNXEFZv/contest/{cid})" if len(contest['ids']) > 1
             else f"[open on Codeforces](https://codeforces.com/group/tFKJNXEFZv/contest/{cid})"

@@ -186,6 +186,23 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             tasks, cses_handle = return_parsing()
+            st.header("Your Progress")
+            solved = sum(1 for prob in total_prob if tasks.get(prob[0], Status.NAT) == Status.AC)
+            points = sum((stars[i] + 1) ** 2 for i, prob in enumerate(total_prob)
+                         if stars[i] >= 0 and tasks.get(prob[0], Status.NAT) == Status.AC)
+            others = [info.get('score', 0) for user, info in di['usernames'].items()
+                      if user not in black and user not in admins and user != st.session_state.get('username')]
+            rank = 1 + sum(1 for s in others if s > points)
+            lc, mc, rc = st.columns(3)
+            lc.metric('Problems solved', f'{solved}/{len(total_prob)}')
+            mc.metric('Total points', points)
+            rc.metric('Leaderboard rank', f'#{rank}')
+            st.progress(solved / len(total_prob))
+            st.write("---")
+
+        with st.container():
+            if not st.session_state.get('authentication_status'):
+                st.rerun()
             st.header("Week zero - The Basics")
             new_off = week(week0u, week0l, week0s, tasks, 0)
             st.write("---")
