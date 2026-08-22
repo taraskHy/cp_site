@@ -14,8 +14,6 @@ CF_API = 'https://codeforces.com/api/'
 
 
 def _signed_request(method, **params):
-    """Call a Codeforces API method with an authenticated (signed) request.
-    Needed for private group contests. Key/secret come from st.secrets."""
     key = st.secrets.get('CF_API_KEY')
     secret = st.secrets.get('CF_API_SECRET')
     if not key or not secret:
@@ -43,13 +41,10 @@ def _signed_request(method, **params):
 
 @st.cache_data(ttl=600, show_spinner='Fetching standings from Codeforces...')
 def fetch_standings(contest_id):
-    """Standings for one contest. Cached for 10 minutes; contests are finished so this is safe."""
     return _signed_request('contest.standings', contestId=contest_id, showUnofficial='false')
 
 
 def merge_contests(contest_ids):
-    """Fetch every contest in the group and merge their rows into one standings list.
-    Used when the same contest was run twice for different people."""
     problems = None
     rows = []
     for cid in contest_ids:
@@ -63,17 +58,10 @@ def merge_contests(contest_ids):
 
 
 def rank_key(record):
-    """Sort key: most solved first, then the toughest problems solved, then lowest penalty.
-    'Toughness' of a solved problem is (difficulty rank inside its contest, contest number):
-    the hardest problem of a contest beats an easier one from any contest, and between
-    equally-ranked problems the one from a later contest is harder (later contests are
-    harder overall). Lists are compared from the hardest solve down."""
     return (-record['Solved'], [(-r, -c) for r, c in record['_toughness']], record['Penalty'])
 
 
 def build_table(problems, rows, order, handle_to_user, contest_number=0):
-    """Turn Codeforces standings rows into a display table.
-    Only official contestants are shown; problems are ordered easiest -> hardest."""
     if order:
         # requested order first (only letters that really exist), then anything the order forgot
         columns = [c for c in order if c in problems] + [p for p in problems if p not in order]
@@ -117,9 +105,6 @@ def build_table(problems, rows, order, handle_to_user, contest_number=0):
 
 
 def build_overall_table(per_contest_tables, contest_names):
-    """Combine every contest into one ranking: total solved, then toughest problems
-    solved across all contests (rank inside the contest first, later contests count as
-    harder), then total penalty. Penalty only accumulates from contests attended."""
     totals = {}
     for name, table in zip(contest_names, per_contest_tables):
         for _, row in table.iterrows():
