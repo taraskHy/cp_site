@@ -235,10 +235,13 @@ total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
 # Codeforces group contests shown on the Contest Leaderboard page.
 # 'ids': contests merged into one leaderboard (same material, different people).
 # 'order': problem letters from easiest to hardest (None = already sorted A, B, C, ...).
+# 'exclude': Codeforces handles hidden from THIS contest's standings (e.g. a
+#            virtual run accidentally marked official on Codeforces).
 contests = [
     {'name': 'Contest 1', 'ids': [699045, 706550], 'order': None},
     {'name': 'Contest 2', 'ids': [707161], 'order': None},
-    {'name': 'Contest 3', 'ids': [707897], 'order': ['F', 'E', 'C', 'G', 'D', 'A', 'B']},
+    {'name': 'Contest 3', 'ids': [707897], 'order': ['F', 'E', 'C', 'G', 'D', 'A', 'B'],
+     'exclude': ['Natalie_Bittar']},
     {'name': 'Contest 4', 'ids': [709972], 'order': ['B', 'G', 'D', 'C', 'F', 'E', 'A']},
     {'name': 'Contest 5', 'ids': [710889], 'order': ['C', 'F', 'G', 'B', 'D', 'E', 'A', 'H']},
 ]

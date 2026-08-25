@@ -61,7 +61,7 @@ def rank_key(record):
     return (-record['Solved'], [(-r, -c) for r, c in record['_toughness']], record['Penalty'])
 
 
-def build_table(problems, rows, order, handle_to_user, contest_number=0):
+def build_table(problems, rows, order, handle_to_user, contest_number=0, exclude=()):
     if order:
         # requested order first (only letters that really exist), then anything the order forgot
         columns = [c for c in order if c in problems] + [p for p in problems if p not in order]
@@ -69,12 +69,15 @@ def build_table(problems, rows, order, handle_to_user, contest_number=0):
         columns = list(problems)
     # toughness of each problem: (rank inside the contest, 1 = easiest ... n = hardest; contest number)
     difficulty = {problem: (i + 1, contest_number) for i, problem in enumerate(columns)}
+    excluded_handles = {h.lower() for h in exclude}
 
     records = []
     for row in rows:
         if row['party']['participantType'] != 'CONTESTANT':
             continue
         handles = [m['handle'] for m in row['party']['members']]
+        if any(h.lower() in excluded_handles for h in handles):
+            continue
         name = ' + '.join(handle_to_user.get(h.lower(), h) for h in handles)
         record = {
             'Name': name,
@@ -157,7 +160,8 @@ for number, (tab, contest) in enumerate(zip(contest_tabs, data.contests), start=
             st.warning('Standings are unavailable for this contest right now.')
             continue
 
-        table = build_table(problems, rows, contest.get('order'), handle_to_user, contest_number=number)
+        table = build_table(problems, rows, contest.get('order'), handle_to_user, contest_number=number,
+                            exclude=contest.get('exclude', ()))
         per_contest_tables.append(table)
         per_contest_names.append(contest['name'])
         st.caption(f"{len(table)} participants  ·  ranked by solved, then hardest problems solved, then penalty  ·  "
