@@ -103,6 +103,16 @@ with tab["Presentations"]:
             key="cpw11825657"
         )
 
+    st.write("week seven presentations:")
+    path = "2026_presentations/Week_7/CP_2026_lecture7.pdf"
+    with open(path, "rb") as pdf_file:
+        st.download_button(
+            label="Week 7 - Game Theory",
+            data=pdf_file.read(),
+            file_name="CP_2026_lecture7.pdf",
+            mime="application/pdf",
+            key="cpw11825658"
+        )
 
 with tab["SCC"]:
     st.markdown('''
