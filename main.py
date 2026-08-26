@@ -336,6 +336,28 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.header("Week six")
             new_off = week(week6u, week6l, week6s, tasks, new_off)
             st.write("---")
+
+        with st.container():
+            if not st.session_state.get('authentication_status'):
+                st.rerun()
+            st.header("Final Contest Preparation")
+            st.write("Two final contests, 8 problems and 5 hours each, and everything from lecture 1 "
+                     "to lecture 7 may appear.")
+            st.subheader("Lecture 1 - Greedy & DP:")
+            new_off = week(prep1u, [], prep1s, tasks, new_off)
+            st.subheader("Lecture 2 - Graphs, SCC & Union-Find:")
+            new_off = week(prep2u, [], prep2s, tasks, new_off)
+            st.subheader("Lecture 3 - Flows & Matching:")
+            new_off = week(prep3u, [], prep3s, tasks, new_off)
+            st.subheader("Lecture 4 - Segment Trees & Decomposition:")
+            new_off = week(prep4u, [], prep4s, tasks, new_off)
+            st.subheader("Lecture 5 - Trees, Euler tour & Binary lifting:")
+            new_off = week(prep5u, [], prep5s, tasks, new_off)
+            st.subheader("Lecture 6 - Math:")
+            new_off = week(prep6u, [], prep6s, tasks, new_off)
+            st.subheader("Lecture 7 - Game Theory:")
+            new_off = week(prep7u, [], prep7s, tasks, new_off)
+            st.write("---")
         # with st.container():
         #     if not st.session_state.get('authentication_status'):
         #         st.rerun()

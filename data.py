@@ -121,6 +121,57 @@ week6l = [
     ['845Gf', 'https://codeforces.com/problemset/problem/845/G', 'f'],
     ['105974Ef', 'https://codeforces.com/gym/105974/problem/E', 'f'],
 ]
+
+# Final contest preparation - one block per lecture, all of them unlocked from the start.
+prep1s = [0, 0, 0, 1, 0, 1]
+prep1u = [
+    ['1140s', 'https://cses.fi/problemset/task/1140', 's'],   # Projects
+    ['1145s', 'https://cses.fi/problemset/task/1145', 's'],   # Increasing Subsequence
+    ['1744s', 'https://cses.fi/problemset/task/1744', 's'],   # Rectangle Cutting
+    ['1653s', 'https://cses.fi/problemset/task/1653', 's'],   # Elevator Rides
+    ['977Ff', 'https://codeforces.com/problemset/problem/977/F', 'f'],    # Consecutive Subsequence
+    ['1132Ff', 'https://codeforces.com/problemset/problem/1132/F', 'f'],  # Clear the String
+]
+
+prep2s = [1, 1, 2, 1]
+prep2u = [
+    ['1202s', 'https://cses.fi/problemset/task/1202', 's'],   # Investigation
+    ['1673s', 'https://cses.fi/problemset/task/1673', 's'],   # High Score
+    ['1684s', 'https://cses.fi/problemset/task/1684', 's'],   # Giant Pizza
+    ['999Ef', 'https://codeforces.com/problemset/problem/999/E', 'f'],    # Reachability from the Capital
+]
+
+prep3s = [1, 3]
+prep3u = [
+    ['1437Cf', 'https://codeforces.com/problemset/problem/1437/C', 'f'],  # Chef Monocarp
+    ['1082Gf', 'https://codeforces.com/problemset/problem/1082/G', 'f'],  # Petya and Graph
+]
+
+prep4s = [1, 1, 1, 2, 2]
+prep4u = [
+    ['1190s', 'https://cses.fi/problemset/task/1190', 's'],   # Subarray Sum Queries
+    ['1736s', 'https://cses.fi/problemset/task/1736', 's'],   # Polynomial Queries
+    ['1734s', 'https://cses.fi/problemset/task/1734', 's'],   # Distinct Values Queries
+    ['2416s', 'https://cses.fi/problemset/task/2416', 's'],   # Increasing Array Queries
+    ['438Df', 'https://codeforces.com/problemset/problem/438/D', 'f'],    # The Child and Sequence
+]
+
+prep5s = [1, 2, 1]
+prep5u = [
+    ['1136s', 'https://cses.fi/problemset/task/1136', 's'],   # Counting Paths
+    ['2134s', 'https://cses.fi/problemset/task/2134', 's'],   # Path Queries II
+    ['600Ef', 'https://codeforces.com/problemset/problem/600/E', 'f'],    # Lomsat gelral
+]
+
+prep6s = [1]
+prep6u = [
+    ['1514Cf', 'https://codeforces.com/problemset/problem/1514/C', 'f'],  # Product 1 Modulo N
+]
+
+prep7s = [0]
+prep7u = [
+    ['1099s', 'https://cses.fi/problemset/task/1099', 's'],   # Stair Game - staircase Nim
+]
 '''
 
 week1s = [0,0,0,0,0,0,0,1,1,1,2,2]
@@ -225,13 +276,16 @@ total_cf = ['4A','103081E','545C','1472C','2167C','2094D','698A','2167G'] #list 
 total_prob = week1u + week1l + week2u + week2l + week3u + week3l + week4u + week4l + week5u + week5l
 '''
 stars = week0s + week1s + week1hws + week2s + week3s + week4s + week5s + week6s
+stars += prep1s + prep2s + prep3s + prep4s + prep5s + prep6s + prep7s
 total_prob = (week0u + week0l + week1u + week1l + week1hw + week1hwl + week2u + week2l
               + week3u + week3l + week4u + week4l + week5u + week5l + week6u + week6l)
+total_prob += prep1u + prep2u + prep3u + prep4u + prep5u + prep6u + prep7u
 total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
             '443A', '996A', '160A', '34B', '1353B', '4C', '1263D',
             '20C', '475B', '277A', '510C', '520B', '1167C', '427C', '938D',
             '653D', '339D', '52C', '380C', '1234D', '1006E', '1328E',
-            '220B', '617E', '86D', '959F', '105974B', '845G', '105974E'] #list of Codeforces problem IDs
+            '220B', '617E', '86D', '959F', '105974B', '845G', '105974E',
+            '977F', '1132F', '999E', '1437C', '1082G', '438D', '600E', '1514C'] #list of Codeforces problem IDs
 # Codeforces group contests shown on the Contest Leaderboard page.
 # 'ids': contests merged into one leaderboard (same material, different people).
 # 'order': problem letters from easiest to hardest (None = already sorted A, B, C, ...).
