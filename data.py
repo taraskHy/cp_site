@@ -163,9 +163,10 @@ prep5u = [
     ['600Ef', 'https://codeforces.com/problemset/problem/600/E', 'f'],    # Lomsat gelral
 ]
 
-prep6s = [1]
+prep6s = [1, 2]
 prep6u = [
     ['1514Cf', 'https://codeforces.com/problemset/problem/1514/C', 'f'],  # Product 1 Modulo N
+    ['3154s', 'https://cses.fi/problemset/task/3154', 's'],   # System of Linear Equations - Gaussian elimination
 ]
 
 prep7s = [0]
@@ -298,7 +299,7 @@ contests = [
      'exclude': ['Natalie_Bittar']},
     {'name': 'Contest 4', 'ids': [709972], 'order': ['B', 'G', 'D', 'C', 'F', 'E', 'A']},
     {'name': 'Contest 5', 'ids': [710889], 'order': ['C', 'F', 'G', 'B', 'D', 'E', 'A', 'H']},
-    {'name': 'Contest 6', 'ids': [712589], 'order': None},
+    {'name': 'Contest 6', 'ids': [712589], 'order': ['F', 'C', 'D', 'B', 'E', 'A', 'G']},
 ]
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer', 'markin2000']
