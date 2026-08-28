@@ -153,6 +153,9 @@ def return_parsing():
     cses_handle = di['usernames'][username].get('cses_handle')
     cf_handle = di['usernames'][username].get('cf_handle')
     tasks = parser.get_user_info(cses_handle)
+    # get_user_info already displayed st.error(...)
+    if tasks is None:
+        st.stop()
     cf_tasks = fetch_user(total_cf, cf_handle)
 
     if cf_tasks == -1:
