@@ -175,7 +175,7 @@ prep6u = [
     ['2020Ef', 'https://codeforces.com/problemset/problem/2020/E', 'f'],  # Expected Power
 ]
 
-prep7s = [0, 2]
+prep7s = [0, 3]
 prep7u = [
     ['1099s', 'https://cses.fi/problemset/task/1099', 's'],   # Stair Game - staircase Nim
     ['2004Ef', 'https://codeforces.com/problemset/problem/2004/E', 'f'],  # Not a Nim Problem - Grundy + linear sieve
