@@ -179,6 +179,7 @@ prep7s = [0, 3]
 prep7u = [
     ['1099s', 'https://cses.fi/problemset/task/1099', 's'],   # Stair Game - staircase Nim
     ['2004Ef', 'https://codeforces.com/problemset/problem/2004/E', 'f'],  # Not a Nim Problem - Grundy + linear sieve
+    ['2181Ff', 'https://codeforces.com/problemset/problem/2181/F', 'f'],
 ]
 '''
 
@@ -294,7 +295,7 @@ total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
             '653D', '339D', '52C', '380C', '1234D', '1006E', '1328E',
             '220B', '617E', '86D', '959F', '105974B', '845G', '105974E',
             '977F', '1132F', '999E', '1437C', '1082G', '438D', '600E', '1514C',
-            '2004E', '519E', '620E', '208E', '1359E', '2020E'] #list of Codeforces problem IDs
+            '2004E', '519E', '620E', '208E', '1359E', '2020E', '2181F'] #list of Codeforces problem IDs
 # Codeforces group contests shown on the Contest Leaderboard page.
 # 'ids': contests merged into one leaderboard (same material, different people).
 # 'order': problem letters from easiest to hardest (None = already sorted A, B, C, ...).
