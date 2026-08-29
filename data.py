@@ -156,17 +156,23 @@ prep4u = [
     ['438Df', 'https://codeforces.com/problemset/problem/438/D', 'f'],    # The Child and Sequence
 ]
 
-prep5s = [1, 2, 1]
+prep5s = [1, 2, 1, 1, 1, 2]
 prep5u = [
     ['1136s', 'https://cses.fi/problemset/task/1136', 's'],   # Counting Paths
     ['2134s', 'https://cses.fi/problemset/task/2134', 's'],   # Path Queries II
     ['600Ef', 'https://codeforces.com/problemset/problem/600/E', 'f'],    # Lomsat gelral
+    ['519Ef', 'https://codeforces.com/problemset/problem/519/E', 'f'],    # A and B and Lecture Rooms - LCA
+    ['620Ef', 'https://codeforces.com/problemset/problem/620/E', 'f'],    # New Year Tree - Euler tour + seg tree
+    ['208Ef', 'https://codeforces.com/problemset/problem/208/E', 'f'],    # Blood Cousins - binary lifting
 ]
 
-prep6s = [1, 2]
+prep6s = [1, 2, 0, 1, 3]
 prep6u = [
     ['1514Cf', 'https://codeforces.com/problemset/problem/1514/C', 'f'],  # Product 1 Modulo N
     ['3154s', 'https://cses.fi/problemset/task/3154', 's'],   # System of Linear Equations - Gaussian elimination
+    ['1715s', 'https://cses.fi/problemset/task/1715', 's'],   # Creating Strings II - multinomial coefficients
+    ['1359Ef', 'https://codeforces.com/contest/1359/problem/E', 'f'],     # Modular Stability
+    ['2020Ef', 'https://codeforces.com/problemset/problem/2020/E', 'f'],  # Expected Power
 ]
 
 prep7s = [0, 2]
@@ -288,7 +294,7 @@ total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
             '653D', '339D', '52C', '380C', '1234D', '1006E', '1328E',
             '220B', '617E', '86D', '959F', '105974B', '845G', '105974E',
             '977F', '1132F', '999E', '1437C', '1082G', '438D', '600E', '1514C',
-            '2004E'] #list of Codeforces problem IDs
+            '2004E', '519E', '620E', '208E', '1359E', '2020E'] #list of Codeforces problem IDs
 # Codeforces group contests shown on the Contest Leaderboard page.
 # 'ids': contests merged into one leaderboard (same material, different people).
 # 'order': problem letters from easiest to hardest (None = already sorted A, B, C, ...).
