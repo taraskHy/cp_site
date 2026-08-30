@@ -308,7 +308,7 @@ contests = [
      'exclude': ['Natalie_Bittar']},
     {'name': 'Contest 4', 'ids': [709972], 'order': ['B', 'G', 'D', 'C', 'F', 'E', 'A']},
     {'name': 'Contest 5', 'ids': [710889], 'order': ['C', 'F', 'G', 'B', 'D', 'E', 'A', 'H']},
-    {'name': 'Contest 6', 'ids': [712589], 'order': ['F', 'C', 'D', 'B', 'E', 'A', 'G']},
+    {'name': 'Contest 6', 'ids': [712589], 'order': ['F', 'C', 'D', 'B', 'E', 'G', 'A']},
 ]
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer', 'markin2000']
