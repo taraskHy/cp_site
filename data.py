@@ -156,10 +156,9 @@ prep4u = [
     ['438Df', 'https://codeforces.com/problemset/problem/438/D', 'f'],    # The Child and Sequence
 ]
 
-prep5s = [1, 2, 1, 1, 1, 2]
+prep5s = [1, 1, 1, 1, 2]
 prep5u = [
     ['1136s', 'https://cses.fi/problemset/task/1136', 's'],   # Counting Paths
-    ['2134s', 'https://cses.fi/problemset/task/2134', 's'],   # Path Queries II
     ['600Ef', 'https://codeforces.com/problemset/problem/600/E', 'f'],    # Lomsat gelral
     ['519Ef', 'https://codeforces.com/problemset/problem/519/E', 'f'],    # A and B and Lecture Rooms - LCA
     ['620Ef', 'https://codeforces.com/problemset/problem/620/E', 'f'],    # New Year Tree - Euler tour + seg tree
@@ -175,7 +174,7 @@ prep6u = [
     ['2020Ef', 'https://codeforces.com/problemset/problem/2020/E', 'f'],  # Expected Power
 ]
 
-prep7s = [0, 3, 1]
+prep7s = [2, 3, 1]
 prep7u = [
     ['1099s', 'https://cses.fi/problemset/task/1099', 's'],   # Stair Game - staircase Nim
     ['2004Ef', 'https://codeforces.com/problemset/problem/2004/E', 'f'],  # Not a Nim Problem - Grundy + linear sieve
