@@ -302,12 +302,13 @@ total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
 #            virtual run accidentally marked official on Codeforces).
 contests = [
     {'name': 'Contest 1', 'ids': [699045, 706550], 'order': None},
-    {'name': 'Contest 2', 'ids': [707161], 'order': None},
+    {'name': 'Contest 2', 'ids': [707161], 'order': None ,'exclude': ['orva']},
     {'name': 'Contest 3', 'ids': [707897], 'order': ['F', 'E', 'C', 'G', 'D', 'A', 'B'],
      'exclude': ['Natalie_Bittar']},
     {'name': 'Contest 4', 'ids': [709972], 'order': ['B', 'G', 'D', 'C', 'F', 'E', 'A']},
     {'name': 'Contest 5', 'ids': [710889], 'order': ['C', 'F', 'G', 'B', 'D', 'E', 'A', 'H']},
     {'name': 'Contest 6', 'ids': [712589], 'order': ['F', 'C', 'D', 'B', 'E', 'G', 'A']},
+    {'name': 'final contest v1.0', 'ids': [713538], 'order': ['H', 'G', 'E', 'B','D','A','F','C']},
 ]
 admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer', 'markin2000']
