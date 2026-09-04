@@ -13,6 +13,21 @@ using namespace  std;
 #define sz(x) ((int)(x).size())
 #define vvii vector<vii>
 #define MOD 998244353LL
+#include <bits/stdc++.h>
+#include <ext/pb_ds/priority_queue.hpp> // remove if not working...
+using namespace  std;
+#define ll long long
+#define int long long
+#define rep(a,b,c) for(int a=b;a<c;a++)
+#define all(x) (x).begin(),(x).end()
+#define vi vector<int>
+#define pii pair<int,int>
+#define vvi vector<vi>
+#define vii vector<pii>
+#define pb push_back
+#define sz(x) ((int)(x).size())
+#define vvii vector<vii>
+#define MOD 998244353LL
 
 struct Node {
     int count = 0;
@@ -177,6 +192,7 @@ void Shalev_and_the_Infinity_Multiset() {
         }
     }
 }
+
 
 int prexor(int x) {
     if (x==-1) return 0;

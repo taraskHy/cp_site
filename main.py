@@ -370,15 +370,16 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
                     line-height: 1.2;
                     margin: 0.25rem 0 1rem 0;
                 ">
-                    Final contest v1.0 - Solution:
+                    Final contest v1.0 - Solutions:
                 </div>
                 """,
                 unsafe_allow_html=True
             )
-            path = "S/Solutions/Final_v1/main.cpp"
+            path = "S/Solutions/Final_v1/final_contest_v1_solutions.zip"
             bo = BytesIO(open(path, 'rb').read())
-            st.download_button(label='Final contest v1.0 - Solution', data=bo.getvalue(), file_name='main.cpp',
-                               mime='text/x-c++src', key='cpw11825668')
+            st.download_button(label='Final contest v1.0 - Solutions', data=bo.getvalue(),
+                               file_name='final_contest_v1_solutions.zip',
+                               mime='application/zip', key='cpw11825668')
             st.write("---")
 
         # with st.container():
