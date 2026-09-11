@@ -303,7 +303,7 @@ total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
 #hjhj
 c=5
 # Codeforces handles hidden from EVERY contest's standings (matched case-insensitively).
-global_exclude = ['Natalie_Bittar', 'anadelbassam']
+global_exclude = ['Natalie_Bittar', 'Anadelbssam']
 contests = [
     {'name': 'Contest 1', 'ids': [699045, 706550], 'order': None},
     {'name': 'Contest 2', 'ids': [707161], 'order': None ,'exclude': ['orva']},
