@@ -300,6 +300,8 @@ total_cf = ['4A','1669F', '1374C', '2167B', '2167C', '2094D', '2167G',
 # 'order': problem letters from easiest to hardest (None = already sorted A, B, C, ...).
 # 'exclude': Codeforces handles hidden from THIS contest's standings (e.g. a
 #            virtual run accidentally marked official on Codeforces).
+#hjhj
+c=5
 contests = [
     {'name': 'Contest 1', 'ids': [699045, 706550], 'order': None},
     {'name': 'Contest 2', 'ids': [707161], 'order': None ,'exclude': ['orva']},
