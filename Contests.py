@@ -161,7 +161,7 @@ for number, (tab, contest) in enumerate(zip(contest_tabs, data.contests), start=
             continue
 
         table = build_table(problems, rows, contest.get('order'), handle_to_user, contest_number=number,
-                            exclude=contest.get('exclude', ()))
+                            exclude=list(data.global_exclude) + list(contest.get('exclude', ())))
         per_contest_tables.append(table)
         per_contest_names.append(contest['name'])
         st.caption(f"{len(table)} participants  ·  ranked by solved, then hardest problems solved, then penalty  ·  "
