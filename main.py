@@ -11,6 +11,7 @@ from streamlit_star_rating import st_star_rating
 from data import *
 from codeforces_parser import fetch_user
 import db_handler
+import grading
 
 
 st.set_page_config(page_title="Competitive Programming At University of Haifa", page_icon=":shark:", layout="wide")
@@ -87,15 +88,18 @@ def show_stars(star_count, key, size):
         st_star_rating("", 5, star_count, size, read_only=True, dark_theme=True, key=key)
 
 
-def week(list_of_questions, list_of_locked, stars, tasks, totoff):
+def week(list_of_questions, list_of_locked, stars, tasks, totoff, block=None):
     global di
+    graded = grading.graded_positions(di)
     su = 0
     l = list_of_questions
     l2 = list_of_locked
     lc, mc, rc = st.columns(3)
     stars_size = 20
     with lc:
-        k = [st.link_button(f"Problem {totoff + i + 1}", _[1]) for i, _ in enumerate(l)]
+        k = [st.link_button(f"Problem {totoff + i + 1}"
+                            + (" - for grade" if totoff + i in graded else ""), _[1])
+             for i, _ in enumerate(l)]
         st.text('Finish these problems to unlock more challenging ones!')
         # print(tasks)
     with mc:
@@ -116,7 +120,9 @@ def week(list_of_questions, list_of_locked, stars, tasks, totoff):
         lc, mc, rc = st.columns(3)
         off = len(l)
         with lc:
-            k = [st.link_button(f"Problem {totoff + i + 1 + off}", _[1]) for i, _ in enumerate(l2)]
+            k = [st.link_button(f"Problem {totoff + i + 1 + off}"
+                                + (" - for grade" if totoff + i + off in graded else ""), _[1])
+                 for i, _ in enumerate(l2)]
         with mc:
             print(off, len(l2))
             k = [show_stars(stars[i+off], f's{totoff+i+off}', stars_size) for i, _ in enumerate(l2)]
@@ -136,6 +142,11 @@ def week(list_of_questions, list_of_locked, stars, tasks, totoff):
         st.subheader(f'So far you have completed {su}/{off + len(p)} problems from this subject!')
     else:
         st.subheader(f'So far you have completed {su}/{len(p)} problems from this subject!')
+    if block:
+        solved, total, value = grading.block_grade(di, st.session_state.get('username'), block)
+        if total:
+            st.info(f'Homework grade for this week: {value}/100 '
+                    f'({solved}/{total} problems marked for grade solved)')
     return totoff + len(stars)
 
 
@@ -207,7 +218,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             st.header("Week zero - The Basics")
-            new_off = week(week0u, week0l, week0s, tasks, 0)
+            new_off = week(week0u, week0l, week0s, tasks, 0, 'Week zero - The Basics')
             st.write("---")
 
         with st.container():
@@ -218,21 +229,21 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.subheader("Greedy:")
             new_off = week(week1u[:2],[],week1s[:2],tasks,new_off)
             st.subheader("DP:")
-            new_off = week(week1u[2:], week1l, week1s[2:],tasks, new_off)
+            new_off = week(week1u[2:], week1l, week1s[2:],tasks, new_off, 'Week one - Greedy & DP')
             st.write("---")
 
         with st.container():
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             st.header("Homework")
-            new_off = week(week1hw, week1hwl, week1hws, tasks, new_off)
+            new_off = week(week1hw, week1hwl, week1hws, tasks, new_off, 'Week one - Homework')
             st.write("---")
 
         with st.container():
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             st.header("Week two - Graphs")
-            new_off = week(week2u, week2l, week2s, tasks, new_off)
+            new_off = week(week2u, week2l, week2s, tasks, new_off, 'Week two - Graphs')
             st.write("---")
             st.markdown(
                 """
@@ -259,7 +270,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             st.header("Week three - Flows & Matching")
-            new_off = week(week3u, week3l, week3s, tasks, new_off)
+            new_off = week(week3u, week3l, week3s, tasks, new_off, 'Week three - Flows & Matching')
             st.write("---")
             st.markdown(
                 """
@@ -285,7 +296,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             st.header("Week four - Segment Trees & Range Queries")
-            new_off = week(week4u, week4l, week4s, tasks, new_off)
+            new_off = week(week4u, week4l, week4s, tasks, new_off, 'Week four - Segment Trees & Range Queries')
             st.write("---")
             st.markdown(
                 """
@@ -311,7 +322,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             st.header("Week five")
-            new_off = week(week5u, week5l, week5s, tasks, new_off)
+            new_off = week(week5u, week5l, week5s, tasks, new_off, 'Week five')
             st.write("---")
             st.markdown(
                 """
@@ -337,7 +348,7 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             if not st.session_state.get('authentication_status'):
                 st.rerun()
             st.header("Week six")
-            new_off = week(week6u, week6l, week6s, tasks, new_off)
+            new_off = week(week6u, week6l, week6s, tasks, new_off, 'Week six')
             st.write("---")
 
         with st.container():
@@ -347,19 +358,19 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             st.write("Two final contests, 8 problems and 5 hours each, and everything from lecture 1 "
                      "to lecture 7 may appear.")
             st.subheader("Lecture 1 - Greedy & DP:")
-            new_off = week(prep1u, [], prep1s, tasks, new_off)
+            new_off = week(prep1u, [], prep1s, tasks, new_off, 'Final prep 1 - Greedy & DP')
             st.subheader("Lecture 2 - Graphs, SCC & Union-Find:")
-            new_off = week(prep2u, [], prep2s, tasks, new_off)
+            new_off = week(prep2u, [], prep2s, tasks, new_off, 'Final prep 2 - Graphs, SCC & Union-Find')
             st.subheader("Lecture 3 - Flows & Matching:")
-            new_off = week(prep3u, [], prep3s, tasks, new_off)
+            new_off = week(prep3u, [], prep3s, tasks, new_off, 'Final prep 3 - Flows & Matching')
             st.subheader("Lecture 4 - Segment Trees & Decomposition:")
-            new_off = week(prep4u, [], prep4s, tasks, new_off)
+            new_off = week(prep4u, [], prep4s, tasks, new_off, 'Final prep 4 - Segment Trees & Decomposition')
             st.subheader("Lecture 5 - Trees, Euler tour & Binary lifting:")
-            new_off = week(prep5u, [], prep5s, tasks, new_off)
+            new_off = week(prep5u, [], prep5s, tasks, new_off, 'Final prep 5 - Trees, Euler tour & Binary lifting')
             st.subheader("Lecture 6 - Math:")
-            new_off = week(prep6u, [], prep6s, tasks, new_off)
+            new_off = week(prep6u, [], prep6s, tasks, new_off, 'Final prep 6 - Math')
             st.subheader("Lecture 7 - Game Theory:")
-            new_off = week(prep7u, [], prep7s, tasks, new_off)
+            new_off = week(prep7u, [], prep7s, tasks, new_off, 'Final prep 7 - Game Theory')
             st.write("---")
             st.markdown(
                 """
@@ -466,5 +477,8 @@ if st.session_state.get('authentication_status') and st.session_state.get('reg')
             db_handler.save_db(di)
 
     #pg = st.navigation([Homepage, 'Leaderboard.py', 'Profile.py', 'Material.py'])
-    pg = st.navigation([Homepage, 'Leaderboard.py', 'Contests.py', 'Profile.py', 'Material.py'])
+    pages = [Homepage, 'Leaderboard.py', 'Contests.py', 'Profile.py', 'Material.py']
+    if st.session_state.get('username') in admins:
+        pages.append('HW_Grades.py')
+    pg = st.navigation(pages)
     pg.run()
