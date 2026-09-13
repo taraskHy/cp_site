@@ -315,5 +315,5 @@ contests = [
     {'name': 'final contest v1.0', 'ids': [713538], 'order': ['H', 'G', 'E', 'B','D','A','F','C']},
     {'name': 'final contest v2.0', 'ids': [715061], 'order': ['H', 'D', 'B', 'G', 'C', 'E', 'A', 'F']},
 ]
-admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev']
+admins = ['tomer1307', 'yarinys', 'yarin', 'ethan', 'shalev', 'markin2000']
 black = ['all', 'omer1308', 'yaser2408', 'ethanh', 'tomer', 'markin2000']
