@@ -58,7 +58,7 @@ def merge_contests(contest_ids):
 
 
 def rank_key(record):
-    return (-record['Solved'], [(-r, -c) for r, c in record['_toughness']], record['Penalty'])
+    return (-record['Solved'], record['Penalty'])
 
 
 def build_table(problems, rows, order, handle_to_user, contest_number=0, exclude=()):
@@ -164,7 +164,7 @@ for number, (tab, contest) in enumerate(zip(contest_tabs, data.contests), start=
                             exclude=list(data.global_exclude) + list(contest.get('exclude', ())))
         per_contest_tables.append(table)
         per_contest_names.append(contest['name'])
-        st.caption(f"{len(table)} participants  ·  ranked by solved, then hardest problems solved, then penalty  ·  "
+        st.caption(f"{len(table)} participants  ·  ranked by solved, then penalty  ·  "
                    "✅ solved (-n = wrong tries before solving)  ·  ❌ (n) = n wrong tries, unsolved")
         st.dataframe(table.drop(columns=['_toughness']), hide_index=True, use_container_width=True)
 
@@ -185,7 +185,6 @@ with overall_tab:
         st.warning('Standings are unavailable right now.')
     else:
         overall = build_overall_table(per_contest_tables, per_contest_names)
-        st.caption(f"{len(overall)} participants  ·  ranked by total solved, then hardest problems solved "
-                   "(by position in the contest; later contests count as harder), then total penalty  ·  "
+        st.caption(f"{len(overall)} participants  ·  ranked by total solved, then total penalty  ·  "
                    "per-contest cells show solved (penalty), — = did not participate")
         st.dataframe(overall, hide_index=True, use_container_width=True)
